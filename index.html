@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gymnastics Hub | Находи и публикуй спортивные мероприятия</title>
+    <meta name="description" content="Gymnastics Hub - Платформа для поиска и публикации спортивных мероприятий по всему миру.">
+    
+    <!-- Fonts: Raleway -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dark-theme">
+    <header class="main-header">
+        <div class="container container--wide">
+            <div class="header__logo">
+                <a href="/" class="logo">
+                    <img src="img/logo.svg" alt="logo">
+                    <span class="logo__text">GymnasticsHub</span>
+                </a>
+            </div>
+
+            <nav class="header__nav">
+                <ul class="nav-menu">
+                    <li class="nav-menu__item dropdown">
+                        <a href="#" class="nav-menu__link">Мероприятия <span class="arrow"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="dropdown-link">Турниры</a></li>
+                            <li><a href="#" class="dropdown-link">Сборы</a></li>
+                            <li><a href="#" class="dropdown-link">Семинары</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-menu__item dropdown">
+                        <a href="#" class="nav-menu__link">Медиа <span class="arrow"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="dropdown-link">Фотогалерея</a></li>
+                            <li><a href="#" class="dropdown-link">Видео</a></li>
+                            <li><a href="#" class="dropdown-link">Новости</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-menu__item">
+                        <a href="#" class="nav-menu__link">Объявления</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="header__actions">
+                <a href="#" class="btn btn--outline-white btn--add">
+                    <img src="img/plus.svg" alt="plus">
+                    Добавить мероприятие
+                </a>
+                <a href="#" class="btn btn--white btn--login">
+                    <img src="img/user_icon.svg" alt="user" class="btn-icon" onerror="this.style.display='none'"> 
+                    Войти
+                </a>
+            </div>
+
+            <button class="menu-toggle" aria-label="Открыть меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container hero-section__grid">
+                <div class="hero-content">
+                    <h1 class="hero-content__title">
+                        Находи и публикуй <br>
+                        спортивные мероприятия <br>
+                        по всему миру
+                    </h1>
+
+                    <div class="search-card">
+                        <div class="search-card__tabs">
+                            <button class="tab-btn active" data-tab="all">Все</button>
+                            <button class="tab-btn" data-tab="tournaments">Турниры</button>
+                            <button class="tab-btn" data-tab="events">Сборы</button>
+                            <button class="tab-btn" data-tab="seminars">Семинары</button>
+                        </div>
+                        <div class="search-card__body">
+                            <div class="input-group">
+                                <input type="text" placeholder="Страна" class="search-input">
+                            </div>
+                            <div class="input-group">
+                                <input type="text" placeholder="Город" class="search-input">
+                            </div>
+                            <div class="date-row">
+                                <div class="date-label">Дата проведения</div>
+                                <div class="date-picker-bar">
+                                    <div class="custom-select">
+                                        <select>
+                                            <option value="01">01</option>
+                                            <option value="02">02</option>
+                                        </select>
+                                        <span class="select-arrow"></span>
+                                    </div>
+                                    <div class="date-separator"></div>
+                                    <div class="custom-select">
+                                        <select>
+                                            <option value="00">00</option>
+                                            <option value="04">04</option>
+                                        </select>
+                                        <span class="select-arrow"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn--black btn--find">Найти</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-bottom-actions">
+                    <a href="#" class="btn btn--outline-white">Объявления</a>
+                    <a href="#" class="btn btn--white">Все мероприятия</a>
+                </div>
+            </div>
+            
+            <div class="hero-background">
+                <!-- User will add image here -->
+                <div class="spotlight"></div>
+            </div>
+        </section>
+
+        <section class="about">
+            <div class="container container--wide">
+                <div class="about__grid">
+                    <div class="about__label">О нас</div>
+                    <div class="about__content">
+                        <p class="about__text">
+                            <strong>Мы международная цифровая платформа для гимнастического сообщества,</strong> созданная для того, чтобы объединить в одном месте всё самое важное: соревнования, учебно-тренировочные сборы, семинары, мастер-классы, объявления, товары, новости, медиа и полезные сервисы.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="ads">
+            <div class="container container--wide">
+                <div class="ads__grid">
+                    <a href="#" class="ads__item">
+                        <span class="ads__placeholder">Реклама</span>
+                        <!-- <img src="img/ad-1.jpg" alt="Реклама" class="ads__img"> -->
+                    </a>
+                    <a href="#" class="ads__item">
+                        <span class="ads__placeholder">Реклама</span>
+                        <!-- <img src="img/ad-2.jpg" alt="Реклама" class="ads__img"> -->
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="promo-slider">
+            <div class="promo-slider__track">
+                <a href="#" class="promo-slide">
+                    <img src="img/test-banner.webp" alt="Gymnastics Event">
+                </a>
+                <a href="#" class="promo-slide active">
+                    <img src="img/test-banner.webp" alt="Gymnastics Event">
+                </a>
+                <a href="#" class="promo-slide">
+                    <img src="img/test-banner.webp" alt="Gymnastics Event">
+                </a>
+            </div>
+        </section>
+
+        <section class="events">
+            <div class="container container--wide">
+                <div class="section-header">
+                    <h2 class="section-title">Мероприятия</h2>
+                    <p class="section-subtitle">Откройте для себя мир гимнастики: от международных турниров до профессиональных мастер-классов</p>
+                </div>
+                
+                <div class="events__grid">
+                    <!-- Card 1 -->
+                    <div class="event-card">
+                        <div class="event-card__image">
+                            <img src="img/card.png" alt="International Rhythmic Stars Cup">
+                        </div>
+                        <div class="event-card__content">
+                            <div class="event-card__top">
+                                <h3 class="event-card__title">International Rhythmic Stars Cup 2026</h3>
+                                <div class="event-card__meta">
+                                    <div class="meta-item">
+                                        <img src="img/cup.svg" alt="Type" class="meta-icon">
+                                        <span>Турнир</span>
+                                    </div>
+                                    <div class="meta-tag">Международный</div>
+                                </div>
+                                <div class="meta-item location">
+                                    <img src="img/geo.svg" alt="Location" class="meta-icon">
+                                    <span>Италия, Рим</span>
+                                </div>
+                            </div>
+                            <div class="event-card__bottom">
+                                <div class="meta-item date">
+                                    <img src="img/date.svg" alt="Date" class="meta-icon">
+                                    <span>14–16 марта 2026</span>
+                                </div>
+                                <a href="#" class="event-card__arrow">
+                                    <img src="img/arrow-right.svg" alt="Details">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="event-card">
+                        <div class="event-card__image">
+                            <img src="img/card.png" alt="Spring Grace Training Camp">
+                        </div>
+                        <div class="event-card__content">
+                            <div class="event-card__top">
+                                <h3 class="event-card__title">Spring Grace Training Camp</h3>
+                                <div class="event-card__meta">
+                                    <div class="meta-item">
+                                        <img src="img/cup.svg" alt="Type" class="meta-icon">
+                                        <span>Учебно-тренировочные сборы</span>
+                                    </div>
+                                </div>
+                                <div class="meta-item location">
+                                    <img src="img/geo.svg" alt="Location" class="meta-icon">
+                                    <span>Греция, Крит</span>
+                                </div>
+                            </div>
+                            <div class="event-card__bottom">
+                                <div class="meta-item date">
+                                    <img src="img/date.svg" alt="Date" class="meta-icon">
+                                    <span>2–10 апреля 2026</span>
+                                </div>
+                                <a href="#" class="event-card__arrow">
+                                    <img src="img/arrow-right.svg" alt="Details">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vertical Ad Banner (Card 3) -->
+                    <div class="event-ad-card">
+                        <a href="#!">
+                        <div class="event-ad-card__bg">
+                            <img src="img/ad-test.png" alt="Middle East Rhythmic Gymnastics">
+                        </div>
+                        <div class="event-ad-card__content">
+                            <h3 class="ad-title">JOIN OUR <br>COMMUNITY</h3>
+                            <p class="ad-subtitle">Everything about gymnastics</p>
+                        </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="event-card">
+                        <div class="event-card__image">
+                            <img src="img/card.png" alt="FIG Judging Seminar">
+                        </div>
+                        <div class="event-card__content">
+                            <div class="event-card__top">
+                                <h3 class="event-card__title">FIG Judging Seminar</h3>
+                                <div class="event-card__meta">
+                                    <div class="meta-item">
+                                        <img src="img/cup.svg" alt="Type" class="meta-icon">
+                                        <span>Семинар</span>
+                                    </div>
+                                </div>
+                                <div class="meta-item location">
+                                    <img src="img/geo.svg" alt="Location" class="meta-icon">
+                                    <span>Испания, Барселона</span>
+                                </div>
+                            </div>
+                            <div class="event-card__bottom">
+                                <div class="meta-item date">
+                                    <img src="img/date.svg" alt="Date" class="meta-icon">
+                                    <span>21–22 апреля 2026</span>
+                                </div>
+                                <a href="#" class="event-card__arrow">
+                                    <img src="img/arrow-right.svg" alt="Details">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="events__footer">
+                    <button class="btn btn--outline-dark btn--show-more">Показать больше</button>
+                </div>
+            </div>
+        </section>
+        <section class="banners-ads">
+            <div class="container container--wide">
+                <div class="banners-ads__grid">
+                    <a href="#" class="banners-ads__item">
+                        <img src="img/ad-test.png" alt="Advertising Banner">
+                    </a>
+                    <a href="#" class="banners-ads__item">
+                        <img src="img/ad-test.png" alt="Advertising Banner">
+                    </a>
+                    <a href="#" class="banners-ads__item">
+                        <img src="img/ad-test.png" alt="Advertising Banner">
+                    </a>
+                    <a href="#" class="banners-ads__item">
+                        <img src="img/ad-test.png" alt="Advertising Banner">
+                    </a>
+                </div>
+
+                <div class="banners-ads__footer">
+                    <a href="#" class="ad-cta">
+                        Разместить рекламу 
+                        <img src="img/arrow-right.svg" alt="arrow" class="cta-arrow">
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container container--wide">
+            <div class="footer__top">
+                <div class="footer__col footer__promo">
+                    <h2 class="footer__tagline">
+                        Будем рады <br>
+                        работать <br>
+                        <span class="italic">вместе</span>
+                    </h2>
+                    
+                    <div class="publish-block">
+                        <a href="#" class="publish-btn">
+                            <span class="circle-arrow">
+                                <img src="img/arrow-up-right.svg" alt="arrow">
+                            </span>
+                            <span class="btn-text">ОПУБЛИКОВАТЬ МЕРОПРИЯТИЕ</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer__col footer__contacts">
+                    <div class="contact-item">
+                        <span class="contact-label">Почта</span>
+                        <a href="mailto:лала@gmail.com" class="contact-value">лала@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">Контакты</span>
+                        <a href="tel:+77051234353" class="contact-value">+7 705 123 4353</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">Адрес</span>
+                        <span class="contact-value">г. Астана, ул. Пушкина, <br>дом Колатушкина</span>
+                    </div>
+                </div>
+
+                <div class="footer__col footer__socials">
+                    <a href="https://instagram.com" class="social-link instagram" target="_blank">
+                        <img src="img/instagram.svg" alt="Instagram" class="social-icon">
+                        <span>INSTAGRAM</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <a href="https://ziz.kz" class="copyright" target="_blank">
+                    Разработка и поддержка сайтов <span>ZIZ INC</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Assistant Widget -->
+    <a href="#" class="ai-widget" title="AI Ассистент">
+        <img src="img/ai-btn.png" alt="AI">
+    </a>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
