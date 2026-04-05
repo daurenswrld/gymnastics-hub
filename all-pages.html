@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gymnastics Hub — Навигация по страницам</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background-color: #f8f8f8;
+            padding: 80px 20px;
+            font-family: 'Raleway', sans-serif;
+        }
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .nav-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .nav-header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+        .nav-header p {
+            color: #666;
+            font-size: 18px;
+        }
+        .pages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .page-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #eee;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border-color: #BA8748;
+        }
+        .page-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: #BA8748;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .page-card:hover::before {
+            opacity: 1;
+        }
+        .page-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+        .page-card p {
+            color: #777;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        .page-card .link-btn {
+            margin-top: auto;
+            color: #BA8748;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 0.1em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .page-card .link-btn img {
+            width: 18px;
+            transition: transform 0.3s;
+        }
+        .page-card:hover .link-btn img {
+            transform: translateX(5px);
+        }
+        .status-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #E8F5E9;
+            color: #2E7D32;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-container">
+        <header class="nav-header">
+            <h1>Gymnastics Hub</h1>
+            <p>Платформа для гимнастов и организаторов мероприятий</p>
+        </header>
+
+        <div class="pages-grid">
+            <!-- Page 1: Landing -->
+            <a href="index.html" class="page-card">
+                <span class="status-tag">Готово</span>
+                <h3>Главная страница</h3>
+                <p>Посадочная страница с промо-слайдером, списком мероприятий, ИИ-ассистентом и рекламными блоками.</p>
+                <div class="link-btn">
+                    Перейти к просмотру
+                    <img src="img/arrow-right.svg" alt="arrow">
+                </div>
+            </a>
+
+            <!-- Page 2: Catalog -->
+            <a href="events.html" class="page-card">
+                <span class="status-tag">Готово</span>
+                <h3>Все мероприятия</h3>
+                <p>Каталог событий с продвинутой фильтрацией по дате, типу, локации и статусу. Сетка 3 в ряд.</p>
+                <div class="link-btn">
+                    Перейти к просмотру
+                    <img src="img/arrow-right.svg" alt="arrow">
+                </div>
+            </a>
+
+            <!-- Page 3: Single Event -->
+            <a href="event-details.html" class="page-card">
+                <span class="status-tag">Готово</span>
+                <h3>Страница мероприятия</h3>
+                <p>Детальная информация о турнире: лайтбокс-галерея, описание, статус-теги и блок похожих событий.</p>
+                <div class="link-btn">
+                    Перейти к просмотру
+                    <img src="img/arrow-right.svg" alt="arrow">
+                </div>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

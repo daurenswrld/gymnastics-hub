@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Все мероприятия | Gymnastics Hub</title>
+    <meta name="description" content="Полный каталог гимнастических мероприятий: турниры, сборы, семинары.">
+    
+    <!-- Fonts: Raleway -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="light-theme">
+    <header class="main-header main-header--light">
+        <div class="container container--wide">
+            <div class="header__logo">
+                <a href="/" class="logo">
+                    <img src="img/logo-black.svg" alt="logo">
+                    <span class="logo__text">GymnasticsHub</span>
+                </a>
+            </div>
+
+            <nav class="header__nav">
+                <ul class="nav-menu">
+                    <li class="nav-menu__item dropdown">
+                        <a href="#" class="nav-menu__link">Мероприятия <span class="arrow"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="dropdown-link">Турниры</a></li>
+                            <li><a href="#" class="dropdown-link">Сборы</a></li>
+                            <li><a href="#" class="dropdown-link">Семинары</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-menu__item dropdown">
+                        <a href="#" class="nav-menu__link">Медиа <span class="arrow"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="dropdown-link">Фотогалерея</a></li>
+                            <li><a href="#" class="dropdown-link">Видео</a></li>
+                            <li><a href="#" class="dropdown-link">Новости</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-menu__item">
+                        <a href="#" class="nav-menu__link">Объявления</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="header__actions">
+                <a href="#" class="btn btn--outline-dark btn--add">
+                    <img src="img/plus-dark.svg" alt="plus">
+                    Добавить мероприятие
+                </a>
+                <a href="#" class="btn btn--black btn--login">
+                    <img src="img/user-white.svg" alt="user" class="btn-icon"> 
+                    Войти
+                </a>
+            </div>
+
+            <button class="menu-toggle" aria-label="Открыть меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="catalog-page">
+        <div class="container container--wide">
+            <!-- Header -->
+            <div class="catalog-header">
+                <h1 class="catalog-title">Все мероприятия</h1>
+                <p class="catalog-subtitle">Найдите турниры, сборы и семинары по стране, по городу и дате</p>
+            </div>
+
+            <!-- Search & Sort Bar -->
+            <div class="catalog-search-bar">
+                <div class="search-input-wrapper">
+                    <img src="img/search.svg" alt="search" class="search-icon">
+                    <input type="text" placeholder="Поиск по названию, городу или организатору" class="catalog-search-input">
+                </div>
+                <div class="sort-dropdown">
+                    <div class="custom-select">
+                        <select>
+                            <option value="near">Сначала ближайшие</option>
+                            <option value="new">Сначала новые</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Catalog Content -->
+            <div class="catalog-layout">
+                <!-- Sidebar Filters -->
+                <aside class="catalog-sidebar">
+                    <div class="filter-group">
+                        <h3 class="filter-title">Фильтры</h3>
+                        <div class="filter-divider"></div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4 class="filter-label">Тип мероприятия</h4>
+                        <div class="filter-tags">
+                            <button class="filter-tag active">Все</button>
+                            <button class="filter-tag">Турниры</button>
+                            <button class="filter-tag">Сборы</button>
+                            <button class="filter-tag">Семинары</button>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4 class="filter-label">Страна</h4>
+                        <div class="filter-checkboxes">
+                            <label class="custom-checkbox">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Италия
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Греция
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Испания
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="checkbox" checked>
+                                <span class="checkmark"></span>
+                                Казахстан
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Турция
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Россия
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4 class="filter-label">Дата</h4>
+                        <div class="date-picker-input" id="datePickerContainer">
+                            <img src="img/date.svg" alt="calendar" class="input-icon">
+                            <span id="dateValue">Выберите дату</span>
+                            <input type="date" id="dateInput" class="date-input-hidden">
+                            <span class="select-arrow"></span>
+                        </div>
+                    </div>
+
+                    <div class="filter-group filter-actions">
+                        <button class="btn btn--black btn--apply">Применить</button>
+                    </div>
+                </aside>
+
+                <!-- Events Grid -->
+                <div class="catalog-grid">
+                    <div class="events-list">
+                        <!-- Card 1 -->
+                        <div class="event-card">
+                            <div class="event-card__image">
+                                <img src="img/card.png" alt="Event">
+                            </div>
+                            <div class="event-card__content">
+                                <div class="event-card__top">
+                                    <h3 class="event-card__title">International Rhythmic Stars Cup 2026</h3>
+                                    <div class="event-card__meta">
+                                        <div class="meta-item">
+                                            <img src="img/cup.svg" alt="Type" class="meta-icon">
+                                            <span>Турнир</span>
+                                        </div>
+                                        <div class="meta-tag">Международный</div>
+                                    </div>
+                                    <div class="meta-item location">
+                                        <img src="img/geo.svg" alt="Location" class="meta-icon">
+                                        <span>Италия, Рим</span>
+                                    </div>
+                                </div>
+                                <div class="event-card__bottom">
+                                    <div class="meta-item date">
+                                        <img src="img/date.svg" alt="Date" class="meta-icon">
+                                        <span>14–16 марта 2026</span>
+                                    </div>
+                                    <a href="event-details.html" class="event-card__arrow">
+                                        <img src="img/arrow-right.svg" alt="Details">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="event-card">
+                            <div class="event-card__image">
+                                <img src="img/card.png" alt="Event">
+                            </div>
+                            <div class="event-card__content">
+                                <div class="event-card__top">
+                                    <h3 class="event-card__title">Spring Grace Training Camp</h3>
+                                    <div class="event-card__meta">
+                                        <div class="meta-item">
+                                            <img src="img/cup.svg" alt="Type" class="meta-icon">
+                                            <span>Сборы</span>
+                                        </div>
+                                    </div>
+                                    <div class="meta-item location">
+                                        <img src="img/geo.svg" alt="Location" class="meta-icon">
+                                        <span>Греция, Крит</span>
+                                    </div>
+                                </div>
+                                <div class="event-card__bottom">
+                                    <div class="meta-item date">
+                                        <img src="img/date.svg" alt="Date" class="meta-icon">
+                                        <span>2–10 апреля 2026</span>
+                                    </div>
+                                    <a href="event-details.html" class="event-card__arrow">
+                                        <img src="img/arrow-right.svg" alt="Details">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="event-card">
+                            <div class="event-card__image">
+                                <img src="img/card.png" alt="Event">
+                            </div>
+                            <div class="event-card__content">
+                                <div class="event-card__top">
+                                    <h3 class="event-card__title">FIG Judging Seminar</h3>
+                                    <div class="event-card__meta">
+                                        <div class="meta-item">
+                                            <img src="img/cup.svg" alt="Type" class="meta-icon">
+                                            <span>Семинар</span>
+                                        </div>
+                                    </div>
+                                    <div class="meta-item location">
+                                        <img src="img/geo.svg" alt="Location" class="meta-icon">
+                                        <span>Испания, Барселона</span>
+                                    </div>
+                                </div>
+                                <div class="event-card__bottom">
+                                    <div class="meta-item date">
+                                        <img src="img/date.svg" alt="Date" class="meta-icon">
+                                        <span>21–22 апреля 2026</span>
+                                    </div>
+                                    <a href="event-details.html" class="event-card__arrow">
+                                        <img src="img/arrow-right.svg" alt="Details">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="event-card">
+                            <div class="event-card__image">
+                                <img src="img/card.png" alt="Event">
+                            </div>
+                            <div class="event-card__content">
+                                <div class="event-card__top">
+                                    <h3 class="event-card__title">Golden Ribbon Championship</h3>
+                                    <div class="event-card__meta">
+                                        <div class="meta-item">
+                                            <img src="img/cup.svg" alt="Type" class="meta-icon">
+                                            <span>Турнир</span>
+                                        </div>
+                                        <div class="meta-tag">Республиканский</div>
+                                    </div>
+                                    <div class="meta-item location">
+                                        <img src="img/geo.svg" alt="Location" class="meta-icon">
+                                        <span>Казахстан, Астана</span>
+                                    </div>
+                                </div>
+                                <div class="event-card__bottom">
+                                    <div class="meta-item date">
+                                        <img src="img/date.svg" alt="Date" class="meta-icon">
+                                        <span>18–20 мая 2026</span>
+                                    </div>
+                                    <a href="event-details.html" class="event-card__arrow">
+                                        <img src="img/arrow-right.svg" alt="Details">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 5 -->
+                        <div class="event-card">
+                            <div class="event-card__image">
+                                <img src="img/card.png" alt="Event">
+                            </div>
+                            <div class="event-card__content">
+                                <div class="event-card__top">
+                                    <h3 class="event-card__title">International Rhythmic Stars Cup 2026</h3>
+                                    <div class="event-card__meta">
+                                        <div class="meta-item">
+                                            <img src="img/cup.svg" alt="Type" class="meta-icon">
+                                            <span>Турнир</span>
+                                        </div>
+                                        <div class="meta-tag">Международный</div>
+                                    </div>
+                                    <div class="meta-item location">
+                                        <img src="img/geo.svg" alt="Location" class="meta-icon">
+                                        <span>Италия, Рим</span>
+                                    </div>
+                                </div>
+                                <div class="event-card__bottom">
+                                    <div class="meta-item date">
+                                        <img src="img/date.svg" alt="Date" class="meta-icon">
+                                        <span>14–16 марта 2026</span>
+                                    </div>
+                                    <a href="event-details.html" class="event-card__arrow">
+                                        <img src="img/arrow-right.svg" alt="Details">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 6 -->
+                        <div class="event-card">
+                            <div class="event-card__image">
+                                <img src="img/card.png" alt="Event">
+                            </div>
+                            <div class="event-card__content">
+                                <div class="event-card__top">
+                                    <h3 class="event-card__title">Spring Grace Training Camp</h3>
+                                    <div class="event-card__meta">
+                                        <div class="meta-item">
+                                            <img src="img/cup.svg" alt="Type" class="meta-icon">
+                                            <span>Сборы</span>
+                                        </div>
+                                    </div>
+                                    <div class="meta-item location">
+                                        <img src="img/geo.svg" alt="Location" class="meta-icon">
+                                        <span>Греция, Крит</span>
+                                    </div>
+                                </div>
+                                <div class="event-card__bottom">
+                                    <div class="meta-item date">
+                                        <img src="img/date.svg" alt="Date" class="meta-icon">
+                                        <span>2–10 апреля 2026</span>
+                                    </div>
+                                    <a href="event-details.html" class="event-card__arrow">
+                                        <img src="img/arrow-right.svg" alt="Details">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 7 -->
+                        <div class="event-card">
+                            <div class="event-card__image">
+                                <img src="img/card.png" alt="Event">
+                            </div>
+                            <div class="event-card__content">
+                                <div class="event-card__top">
+                                    <h3 class="event-card__title">FIG Judging Seminar</h3>
+                                    <div class="event-card__meta">
+                                        <div class="meta-item">
+                                            <img src="img/cup.svg" alt="Type" class="meta-icon">
+                                            <span>Семинар</span>
+                                        </div>
+                                    </div>
+                                    <div class="meta-item location">
+                                        <img src="img/geo.svg" alt="Location" class="meta-icon">
+                                        <span>Испания, Барселона</span>
+                                    </div>
+                                </div>
+                                <div class="event-card__bottom">
+                                    <div class="meta-item date">
+                                        <img src="img/date.svg" alt="Date" class="meta-icon">
+                                        <span>21–22 апреля 2026</span>
+                                    </div>
+                                    <a href="event-details.html" class="event-card__arrow">
+                                        <img src="img/arrow-right.svg" alt="Details">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 8 -->
+                        <div class="event-card">
+                            <div class="event-card__image">
+                                <img src="img/card.png" alt="Event">
+                            </div>
+                            <div class="event-card__content">
+                                <div class="event-card__top">
+                                    <h3 class="event-card__title">Golden Ribbon Championship</h3>
+                                    <div class="event-card__meta">
+                                        <div class="meta-item">
+                                            <img src="img/cup.svg" alt="Type" class="meta-icon">
+                                            <span>Турнир</span>
+                                        </div>
+                                        <div class="meta-tag">Республиканский</div>
+                                    </div>
+                                    <div class="meta-item location">
+                                        <img src="img/geo.svg" alt="Location" class="meta-icon">
+                                        <span>Казахстан, Астана</span>
+                                    </div>
+                                </div>
+                                <div class="event-card__bottom">
+                                    <div class="meta-item date">
+                                        <img src="img/date.svg" alt="Date" class="meta-icon">
+                                        <span>18–20 мая 2026</span>
+                                    </div>
+                                    <a href="event-details.html" class="event-card__arrow">
+                                        <img src="img/arrow-right.svg" alt="Details">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 9 -->
+                        <div class="event-card">
+                            <div class="event-card__image">
+                                <img src="img/card.png" alt="Event">
+                            </div>
+                            <div class="event-card__content">
+                                <div class="event-card__top">
+                                    <h3 class="event-card__title">FIG Judging Seminar</h3>
+                                    <div class="event-card__meta">
+                                        <div class="meta-item">
+                                            <img src="img/cup.svg" alt="Type" class="meta-icon">
+                                            <span>Семинар</span>
+                                        </div>
+                                    </div>
+                                    <div class="meta-item location">
+                                        <img src="img/geo.svg" alt="Location" class="meta-icon">
+                                        <span>Испания, Барселона</span>
+                                    </div>
+                                </div>
+                                <div class="event-card__bottom">
+                                    <div class="meta-item date">
+                                        <img src="img/date.svg" alt="Date" class="meta-icon">
+                                        <span>21–22 апреля 2026</span>
+                                    </div>
+                                    <a href="event-details.html" class="event-card__arrow">
+                                        <img src="img/arrow-right.svg" alt="Details">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container container--wide">
+            <div class="footer__top">
+                <div class="footer__col footer__promo">
+                    <h2 class="footer__tagline">
+                        Будем рады <br>
+                        работать <br>
+                        <span class="italic">вместе</span>
+                    </h2>
+                    
+                    <div class="publish-block">
+                        <a href="#" class="publish-btn">
+                            <span class="circle-arrow">
+                                <img src="img/arrow-up-right.svg" alt="arrow">
+                            </span>
+                            <span class="btn-text">ОПУБЛИКОВАТЬ МЕРОПРИЯТИЕ</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer__col footer__contacts">
+                    <div class="contact-item">
+                        <span class="contact-label">Почта</span>
+                        <a href="mailto:лала@gmail.com" class="contact-value">лала@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">Контакты</span>
+                        <a href="tel:+77051234353" class="contact-value">+7 705 123 4353</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">Адрес</span>
+                        <span class="contact-value">г. Астана, ул. Пушкина, <br>дом Колатушкина</span>
+                    </div>
+                </div>
+
+                <div class="footer__col footer__socials">
+                    <a href="https://instagram.com" class="social-link instagram" target="_blank">
+                        <img src="img/instagram.svg" alt="Instagram" class="social-icon">
+                        <span>INSTAGRAM</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <a href="https://ziz.kz" class="copyright" target="_blank">
+                    Разработка и поддержка сайтов <span>ZIZ INC</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Assistant Widget -->
+    <div class="ai-widget-container">
+        <div class="ai-tooltip">Привет! Я ИИ-помощник 👋 Чем могу помочь?</div>
+        <a href="#" class="ai-widget" title="AI Ассистент">
+            <img src="img/ai-btn.png" alt="AI">
+        </a>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
