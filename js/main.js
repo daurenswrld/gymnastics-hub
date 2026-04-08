@@ -1,6 +1,34 @@
 // Gymnastics Hub - Main Script (Hero Block Update)
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Preloader Logic
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        const minDisplayTime = 2500;
+        const startTime = Date.now();
+
+        const hidePreloader = () => {
+            const currentTime = Date.now();
+            const elapsedTime = currentTime - startTime;
+            const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
+
+            setTimeout(() => {
+                preloader.classList.add('preloader--hidden');
+                document.body.classList.remove('loading');
+                
+                // Remove from DOM after transition
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 800);
+            }, remainingTime);
+        };
+
+        if (document.readyState === 'complete') {
+            hidePreloader();
+        } else {
+            window.addEventListener('load', hidePreloader);
+        }
+    }
     // Tab switching for Search Card
     const tabButtons = document.querySelectorAll('.tab-btn');
     
