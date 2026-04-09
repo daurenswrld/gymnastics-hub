@@ -248,5 +248,128 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Password Toggle Logic (Universal for all auth pages)
+    const toggleButtons = document.querySelectorAll('.password-toggle');
+    
+    toggleButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const input = btn.parentElement.querySelector('.form-input');
+            const eyeOpen = btn.querySelector('.eye-open');
+            const eyeClosed = btn.querySelector('.eye-closed');
+            
+            if (input && eyeOpen && eyeClosed) {
+                const isPassword = input.getAttribute('type') === 'password';
+                input.setAttribute('type', isPassword ? 'text' : 'password');
+                
+                // Toggle icons
+                eyeOpen.style.display = isPassword ? 'none' : 'block';
+                eyeClosed.style.display = isPassword ? 'block' : 'none';
+                
+                btn.classList.toggle('active');
+            }
+        });
+    });
+
+    // Role Selector Logic
+    const roleOptions = document.querySelectorAll('.role-option');
+    const selectedRoleInput = document.getElementById('selectedRole');
+
+    if (roleOptions.length > 0 && selectedRoleInput) {
+        roleOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove active from others
+                roleOptions.forEach(opt => opt.classList.remove('active'));
+                // Add active to clicked
+                option.classList.add('active');
+                // Update hidden input
+                selectedRoleInput.value = option.getAttribute('data-role');
+                
+                console.log(`Selected role: ${selectedRoleInput.value}`);
+            });
+        });
+    }
+
+    // --- SPA Auth Logic ---
+    const authCard = document.querySelector('.auth-card');
+    const authTitle = document.querySelector('.auth-card__title');
+    const authSubtext = document.querySelector('.auth-card__subtext');
+    const authForms = document.querySelectorAll('.auth-form');
+    const recoverySuccess = document.querySelector('.recovery-success');
+
+    if (authCard && authTitle) {
+        window.showAuthState = function(state, extra = '') {
+            // Hide all states first
+            authForms.forEach(f => f.classList.remove('active'));
+            if (recoverySuccess) recoverySuccess.style.display = 'none';
+            if (authSubtext) authSubtext.style.display = 'none';
+            authTitle.style.display = 'block';
+
+            // Switch logic
+            switch(state) {
+                case 'login':
+                    authTitle.innerText = 'Вход в аккаунт';
+                    document.getElementById('loginForm').classList.add('active');
+                    break;
+                case 'register':
+                    authTitle.innerText = 'Создать аккаунт';
+                    document.getElementById('registerForm').classList.add('active');
+                    break;
+                case 'recovery':
+                    authTitle.innerText = 'Восстановление аккаунта';
+                    document.getElementById('recoveryForm').classList.add('active');
+                    break;
+                case 'reset':
+                    authTitle.innerText = 'Восстановление аккаунта';
+                    if (authSubtext) {
+                        authSubtext.innerText = extra || 'example@mail.com';
+                        authSubtext.style.display = 'block';
+                    }
+                    document.getElementById('resetPasswordForm').classList.add('active');
+                    break;
+                case 'success':
+                    authTitle.style.display = 'none';
+                    if (recoverySuccess) recoverySuccess.style.display = 'block';
+                    break;
+            }
+            
+            // Scroll to top of card for better UX
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        // Check hash on load to show specific state (e.g. login.html#reset)
+        const initialHash = window.location.hash.substring(1);
+        if (initialHash && ['login', 'register', 'recovery', 'reset', 'success'].includes(initialHash)) {
+            showAuthState(initialHash);
+        }
+
+        // Attach listeners to navigation links
+        document.body.addEventListener('click', (e) => {
+            const target = e.target.closest('a');
+            if (!target) return;
+
+            const href = target.getAttribute('href');
+            
+            if (href === 'register.html') {
+                e.preventDefault();
+                showAuthState('register');
+            } else if (href === 'login.html') {
+                e.preventDefault();
+                showAuthState('login');
+            } else if (href === 'forgot-password.html') {
+                e.preventDefault();
+                showAuthState('recovery');
+            }
+        });
+
+        // Handle recovery form submission (demo success state)
+        const recoveryForm = document.getElementById('recoveryForm');
+        if (recoveryForm) {
+            recoveryForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                showAuthState('success');
+            });
+        }
+    }
+
     console.log('Gymnastics Hub Scripts Initialized!');
 });

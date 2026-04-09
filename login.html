@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в аккаунт | Gymnastics Hub</title>
+    <meta name="description" content="Войдите в свой личный кабинет Gymnastics Hub.">
+    
+    <!-- Fonts: Raleway -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="loading">
+    <!-- Premium Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader__content">
+            <div class="preloader__star">
+                <svg width="74" height="75" viewBox="0 0 74 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M36.6602 0L44.437 29.2244L73.3203 37.093L44.437 44.9616L36.6602 74.186L28.8834 44.9616L0 37.093L28.8834 29.2244L36.6602 0Z" fill="white"/>
+                </svg>
+            </div>
+            <div class="preloader__text">Gymnastics Hub</div>
+        </div>
+    </div>
+
+    <div class="auth-page">
+        <div class="auth-card">
+            <!-- New Premium Logo Header -->
+            <div class="auth-card__logo-container">
+                <a href="index.html" class="auth-logo">
+                    <div class="auth-logo__star">
+                        <svg width="30" height="31" viewBox="0 0 74 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M36.6602 0L44.437 29.2244L73.3203 37.093L44.437 44.9616L36.6602 74.186L28.8834 44.9616L0 37.093L28.8834 29.2244L36.6602 0Z" fill="black"/>
+                        </svg>
+                    </div>
+                    <span class="auth-logo__text">Gymnastics Hub</span>
+                </a>
+            </div>
+
+            <h1 class="auth-card__title">Вход в аккаунт</h1>
+            <div class="auth-card__subtext">example@mail.com</div>
+
+            <!-- 1. LOGIN FORM -->
+            <form class="auth-form active" id="loginForm">
+                <div class="form-group">
+                    <input type="text" placeholder="Эл. почта или номер телефона" class="form-input" required>
+                </div>
+                <div class="form-group password-group">
+                    <input type="password" placeholder="Пароль" class="form-input" id="passwordInput" required>
+                    <button type="button" class="password-toggle">
+                        <svg class="eye-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <svg class="eye-closed" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="auth-form__actions">
+                    <a href="register.html" class="btn btn--outline-dark btn--rounded">У меня нет аккаунта</a>
+                    <button type="submit" class="btn btn--black btn--rounded">Войти</button>
+                </div>
+
+                <div class="auth-form__footer">
+                    <a href="forgot-password.html" class="forgot-password">Забыл пароль</a>
+                </div>
+            </form>
+
+            <!-- 2. REGISTER FORM -->
+            <form class="auth-form" id="registerForm">
+                <div class="role-selector">
+                    <div class="role-option active" data-role="user">Пользователь</div>
+                    <div class="role-option" data-role="club">Клуб</div>
+                    <div class="role-option" data-role="org">Организатор</div>
+                    <input type="hidden" name="role" id="selectedRole" value="user">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Эл. почта или номер телефона" class="form-input" required>
+                </div>
+                <div class="form-group password-group">
+                    <input type="password" placeholder="Придумайте пароль" class="form-input" required>
+                    <button type="button" class="password-toggle">
+                        <svg class="eye-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <svg class="eye-closed" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div class="form-group password-group">
+                    <input type="password" placeholder="Повторите пароль" class="form-input" required>
+                    <button type="button" class="password-toggle">
+                        <svg class="eye-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <svg class="eye-closed" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div class="auth-form__actions">
+                    <a href="login.html" class="btn btn--outline-dark btn--rounded">У меня уже есть аккаунт</a>
+                    <button type="submit" class="btn btn--black btn--rounded">Создать</button>
+                </div>
+            </form>
+
+            <!-- 3. RECOVERY FORM -->
+            <form class="auth-form" id="recoveryForm">
+                <div class="form-group">
+                    <input type="text" placeholder="Эл. почта или номер телефона" class="form-input" required>
+                </div>
+                <div class="auth-form__actions">
+                    <a href="login.html" class="btn btn--outline-dark btn--rounded">← &nbsp; Назад</a>
+                    <button type="submit" class="btn btn--black btn--rounded">Восстановить</button>
+                </div>
+            </form>
+
+            <!-- 4. SUCCESS STATE -->
+            <div class="recovery-success" style="display: none;">
+                <div class="recovery-message">
+                    Ссылка для восстановления аккаунта была отправлена на почту example@mail.com
+                </div>
+                <div class="auth-form__actions" style="justify-content: center;">
+                    <a href="login.html" class="btn btn--outline-dark btn--rounded" style="max-width: 200px;">← &nbsp; Назад</a>
+                </div>
+            </div>
+
+            <!-- 5. RESET PASSWORD FORM -->
+            <form class="auth-form" id="resetPasswordForm">
+                <div class="form-group password-group">
+                    <input type="password" placeholder="Придумайте новый пароль" class="form-input" required>
+                    <button type="button" class="password-toggle">
+                        <svg class="eye-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <svg class="eye-closed" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div class="form-group password-group">
+                    <input type="password" placeholder="Повторите новый пароль" class="form-input" required>
+                    <button type="button" class="password-toggle">
+                        <svg class="eye-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <svg class="eye-closed" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div class="auth-form__actions">
+                    <button type="submit" class="btn btn--black btn--rounded" style="width: 100%;">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

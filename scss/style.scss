@@ -1989,3 +1989,232 @@ body.dark-theme {
         background-color: #1a1a1a;
     }
 }
+
+// Authorization Pages
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F8F9FA;
+    padding: 20px;
+}
+
+.auth-card {
+    background: #ffffff;
+    padding: 60px 50px;
+    border-radius: 40px;
+    width: 100%;
+    max-width: 540px;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.04);
+    text-align: center;
+
+    &__logo-container {
+        margin-bottom: 35px;
+
+        .auth-logo {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #E0E0E0;
+            border-radius: 20px;
+            padding: 16px 45px;
+            background-color: #ffffff;
+            text-decoration: none;
+            transition: transform 0.2s;
+
+            &:hover {
+                transform: translateY(-2px);
+            }
+
+            &__star {
+                width: 24px;
+                height: 24px;
+                display: flex;
+                align-items: center;
+                margin-right: 12px;
+
+                svg {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            &__text {
+                font-size: 22px;
+                font-weight: 600;
+                color: #000000;
+                letter-spacing: -0.02em;
+            }
+        }
+    }
+
+    &__title {
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 35px;
+        color: #000000;
+        letter-spacing: -0.02em;
+    }
+
+    &__subtext {
+        font-size: 18px;
+        font-weight: 500;
+        color: #000000;
+        margin-top: -30px;
+        margin-bottom: 30px;
+        display: none;
+    }
+}
+
+.role-selector {
+    display: flex;
+    background-color: #ffffff;
+    border-radius: 30px;
+    border: 1px solid #000000;
+    margin-bottom: 25px;
+
+    .role-option {
+        flex: 1;
+        padding:10px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #000000;
+        cursor: pointer;
+        border-radius: 25px;
+        transition: all 0.25s ease;
+        user-select: none;
+
+        &.active {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        &:hover:not(.active) {
+            background-color: rgba(0,0,0,0.02);
+        }
+    }
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .form-group {
+        position: relative;
+    }
+
+    .form-input {
+        width: 100%;
+        background-color: #F2F2F2;
+        border: 1px solid transparent;
+        padding: 15px 25px;
+        border-radius: 30px; // Very rounded as in design
+        font-size: 15px;
+        font-family: inherit;
+        outline: none;
+        transition: 0.3s;
+
+        &::placeholder {
+            color: #A0A0A0;
+        }
+
+        &:focus {
+            background-color: #ffffff;
+            border-color: rgba(0,0,0,0.1);
+        }
+    }
+
+    &__actions {
+        display: flex;
+        flex-direction: row; // Keep in a row as requested
+        gap: 15px;
+        margin-top: 15px;
+
+        .btn {
+            flex: 1;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 10px 15px;
+            white-space: nowrap;
+        }
+    }
+
+    &__footer {
+        margin-top: 20px;
+        
+        .forgot-password {
+            color: #777777;
+            font-size: 14px;
+            text-decoration: none;
+            transition: color 0.3s;
+            text-decoration: underline;
+            &:hover {
+                color: #000000;
+            }
+        }
+    }
+
+    // SPA Logic
+    &:not(.active) {
+        display: none;
+    }
+
+    &.active {
+        display: flex;
+        animation: authFadeIn 0.4s ease forwards;
+    }
+}
+
+.recovery-message {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #000000;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+@keyframes authFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.password-group {
+    .password-toggle {
+        position: absolute;
+        right: 22px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: #A0A0A0;
+        cursor: pointer;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        transition: color 0.3s;
+
+        &:hover {
+            color: #000;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .auth-card {
+        padding: 40px 20px;
+        border-radius: 30px;
+    }
+    
+    .auth-form__actions {
+        grid-template-columns: 1fr;
+    }
+}

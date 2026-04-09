@@ -1854,4 +1854,205 @@ body.dark-theme {
   background-color: #1a1a1a;
 }
 
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F8F9FA;
+  padding: 20px;
+}
+
+.auth-card {
+  background: #ffffff;
+  padding: 60px 50px;
+  border-radius: 40px;
+  width: 100%;
+  max-width: 540px;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.04);
+  text-align: center;
+}
+.auth-card__logo-container {
+  margin-bottom: 35px;
+}
+.auth-card__logo-container .auth-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #E0E0E0;
+  border-radius: 20px;
+  padding: 16px 45px;
+  background-color: #ffffff;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+.auth-card__logo-container .auth-logo:hover {
+  transform: translateY(-2px);
+}
+.auth-card__logo-container .auth-logo__star {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  margin-right: 12px;
+}
+.auth-card__logo-container .auth-logo__star svg {
+  width: 100%;
+  height: 100%;
+}
+.auth-card__logo-container .auth-logo__text {
+  font-size: 22px;
+  font-weight: 600;
+  color: #000000;
+  letter-spacing: -0.02em;
+}
+.auth-card__title {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 35px;
+  color: #000000;
+  letter-spacing: -0.02em;
+}
+.auth-card__subtext {
+  font-size: 18px;
+  font-weight: 500;
+  color: #000000;
+  margin-top: -30px;
+  margin-bottom: 30px;
+  display: none;
+}
+
+.role-selector {
+  display: flex;
+  background-color: #ffffff;
+  border-radius: 30px;
+  border: 1px solid #000000;
+  margin-bottom: 25px;
+}
+.role-selector .role-option {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000000;
+  cursor: pointer;
+  border-radius: 25px;
+  transition: all 0.25s ease;
+  user-select: none;
+}
+.role-selector .role-option.active {
+  background-color: #000000;
+  color: #ffffff;
+}
+.role-selector .role-option:hover:not(.active) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.auth-form .form-group {
+  position: relative;
+}
+.auth-form .form-input {
+  width: 100%;
+  background-color: #F2F2F2;
+  border: 1px solid transparent;
+  padding: 15px 25px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  transition: 0.3s;
+}
+.auth-form .form-input::placeholder {
+  color: #A0A0A0;
+}
+.auth-form .form-input:focus {
+  background-color: #ffffff;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.auth-form__actions {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  margin-top: 15px;
+}
+.auth-form__actions .btn {
+  flex: 1;
+  border-radius: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 15px;
+  white-space: nowrap;
+}
+.auth-form__footer {
+  margin-top: 20px;
+}
+.auth-form__footer .forgot-password {
+  color: #777777;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.3s;
+  text-decoration: underline;
+}
+.auth-form__footer .forgot-password:hover {
+  color: #000000;
+}
+.auth-form:not(.active) {
+  display: none;
+}
+.auth-form.active {
+  display: flex;
+  animation: authFadeIn 0.4s ease forwards;
+}
+
+.recovery-message {
+  font-size: 18px;
+  line-height: 1.5;
+  color: #000000;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+@keyframes authFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.password-group .password-toggle {
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #A0A0A0;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s;
+}
+.password-group .password-toggle:hover {
+  color: #000;
+}
+
+@media (max-width: 500px) {
+  .auth-card {
+    padding: 40px 20px;
+    border-radius: 30px;
+  }
+  .auth-form__actions {
+    grid-template-columns: 1fr;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */
