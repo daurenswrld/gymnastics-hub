@@ -348,14 +348,18 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!target) return;
 
             const href = target.getAttribute('href');
+            if (!href) return;
             
-            if (href === 'register.html') {
+            // Check if we are on the auth page or at least have the forms
+            if (!document.getElementById('loginForm')) return;
+
+            if (href.endsWith('register.html')) {
                 e.preventDefault();
                 showAuthState('register');
-            } else if (href === 'login.html') {
+            } else if (href.endsWith('login.html')) {
                 e.preventDefault();
                 showAuthState('login');
-            } else if (href === 'forgot-password.html') {
+            } else if (href.endsWith('forgot-password.html')) {
                 e.preventDefault();
                 showAuthState('recovery');
             }
