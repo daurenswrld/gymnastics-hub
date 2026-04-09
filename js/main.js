@@ -1,9 +1,27 @@
 // Gymnastics Hub - Main Script (Hero Block Update)
 
 document.addEventListener('DOMContentLoaded', () => {
+    // -- Lenis Smooth Scroll Initialization --
+    const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 2,
+        infinite: false,
+    });
+
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
     // Preloader Logic
     const preloader = document.getElementById('preloader');
     if (preloader) {
+        lenis.stop(); // Stop scrolling while preloader is active
+
         const minDisplayTime = 2500;
         const startTime = Date.now();
 
@@ -15,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 preloader.classList.add('preloader--hidden');
                 document.body.classList.remove('loading');
+                lenis.start(); // Enable scrolling after preloader is hidden
                 
                 // Remove from DOM after transition
                 setTimeout(() => {
