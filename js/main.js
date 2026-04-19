@@ -35,6 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.classList.remove('loading');
                 lenis.start(); // Enable scrolling after preloader is hidden
                 
+                // Ensure we start at the top
+                window.scrollTo(0, 0);
+                lenis.scrollTo(0, { immediate: true });
+                
                 // Remove from DOM after transition
                 setTimeout(() => {
                     preloader.style.display = 'none';
@@ -47,6 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             window.addEventListener('load', hidePreloader);
         }
+    } else {
+        // No preloader on this page — ensure scroll works immediately
+        document.body.classList.remove('loading');
+        lenis.start();
     }
     // Tab switching for Search Card
     const tabButtons = document.querySelectorAll('.tab-btn');
@@ -79,59 +87,62 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Mobile Menu Toggle
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navMenu = document.querySelector('.header__nav');
-    const headerActions = document.querySelector('.header__actions');
-
-    if (menuToggle) {
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            headerActions.classList.toggle('active');
-            menuToggle.classList.toggle('open');
-        });
-    }
+    // Mobile Menu Toggle — handled in the Burger section below
 
 
     // Promo Slider Logic
     const sliderTrack = document.querySelector('.promo-slider__track');
-    if (sliderTrack && slides.length > 0) {
+    const slides = document.querySelectorAll('.promo-slide');
 
-        // Helper to center slide smoothly
-        const centerActiveSlide = (slide) => {
+    if (sliderTrack && slides.length > 0) {
+        // Helper to center slide smoothly (fixed to prevent window jumping)
+        const centerActiveSlide = (slide, smooth = true) => {
             if (!slide || !sliderTrack) return;
             
-            // Calc precise position
-            const slideWidth = slide.offsetWidth;
-            const containerWidth = sliderTrack.offsetWidth;
-            const slideLeft = slide.offsetLeft;
+            const container = sliderTrack.parentElement; // .promo-slider
+            const scrollLeft = slide.offsetLeft - (container.clientWidth / 2) + (slide.clientWidth / 2);
             
-            sliderTrack.scrollTo({
-                left: slideLeft - (containerWidth / 2) + (slideWidth / 2),
-                behavior: 'smooth'
+            container.scrollTo({
+                left: scrollLeft,
+                behavior: smooth ? 'smooth' : 'auto'
             });
         };
 
         slides.forEach(slide => {
             slide.addEventListener('click', (e) => {
-                if (!slide.classList.contains('active')) {
-                    e.preventDefault();
-                    slides.forEach(s => s.classList.remove('active'));
-                    slide.classList.add('active');
-                    centerActiveSlide(slide);
+                const isActive = slide.classList.contains('active');
+                const href = slide.getAttribute('href');
+
+                if (isActive && href && href !== '#') {
+                    // If already active and has a real link, allow navigation
+                    return;
                 }
+
+                // Otherwise, prevent navigation and just activate/center
+                e.preventDefault();
+                slides.forEach(s => s.classList.remove('active'));
+                slide.classList.add('active');
+                centerActiveSlide(slide);
             });
         });
 
-        // Initial centering check
-        const activeSlide = document.querySelector('.promo-slide.active');
-        if (activeSlide) {
-            setTimeout(() => centerActiveSlide(activeSlide), 500);
+        // Initial state selection: prefer 2nd slide
+        let initialSlide = slides[0];
+        if (slides.length > 1) {
+            initialSlide = slides[1];
         }
+
+        // Reset and set active
+        slides.forEach(s => s.classList.remove('active'));
+        
+        // Final centering with delay to ensure rendering is complete
+        setTimeout(() => {
+            initialSlide.classList.add('active');
+            centerActiveSlide(initialSlide);
+        }, 500);
     }
 
-    // Ensure we start at the top on initial load
-    window.scrollTo(0, 0);
+
 
     // Catalog Filters Logic (Tag Selection)
     const filterTags = document.querySelectorAll('.filter-tag');
@@ -392,6 +403,184 @@ document.addEventListener('DOMContentLoaded', () => {
                 showAuthState('success');
             });
         }
+    }
+
+    // --- Add Event SPA Logic ---
+    const addEventSteps = document.querySelectorAll('.step-content');
+    const stepperSteps = document.querySelectorAll('.stepper .step');
+    const btnNext = document.getElementById('btnNext');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnPublish = document.getElementById('btnPublish');
+    const choiceCards = document.querySelectorAll('.choice-card');
+    
+    let currentStep = 1;
+
+    if (addEventSteps.length > 0 && btnNext) {
+        const updateStepUI = () => {
+            // Update Visibility
+            addEventSteps.forEach((s, idx) => {
+                s.classList.toggle('active', idx === currentStep - 1);
+            });
+
+            // Update Stepper
+            stepperSteps.forEach((s, idx) => {
+                s.classList.toggle('active', idx === currentStep - 1);
+                s.classList.toggle('completed', idx < currentStep - 1);
+            });
+
+            // Update Buttons
+            if (btnPrev) btnPrev.style.display = currentStep > 1 ? 'block' : 'none';
+            
+            if (currentStep === 3) {
+                if (btnNext) btnNext.style.display = 'none';
+                if (btnPublish) btnPublish.style.display = 'flex';
+                
+                // Populate summary (Step 3)
+                const activeChoice = document.querySelector('.choice-card.active');
+                const typeVal = activeChoice ? activeChoice.getAttribute('data-type') : 'Не выбрано';
+                
+                const titleVal = document.getElementById('eventTitle')?.value || 'Без названия';
+                const countrySel = document.getElementById('eventCountry');
+                const citySel = document.getElementById('eventCity');
+                const countryVal = countrySel ? countrySel.options[countrySel.selectedIndex]?.text : '';
+                const cityVal = citySel ? citySel.options[citySel.selectedIndex]?.text : '';
+                const placeVal = document.getElementById('eventPlace')?.value || '';
+                
+                const dateVal = document.getElementById('eventDate')?.value || 'Дата не указана';
+                const descVal = document.getElementById('eventDesc')?.value || 'Описание отсутствует';
+                
+                if (document.getElementById('previewType')) document.getElementById('previewType').innerText = typeVal;
+                // Level is currently hidden in some mocks but we can default it or hide it
+                if (document.getElementById('previewLevel')) document.getElementById('previewLevel').innerText = countryVal === 'Италия' ? 'Международный' : 'Республиканский';
+                
+                if (document.getElementById('previewTitle')) document.getElementById('previewTitle').innerText = titleVal;
+                if (document.getElementById('previewTitleBreadcrumb')) document.getElementById('previewTitleBreadcrumb').innerText = titleVal;
+                
+                const fullLocation = [countryVal, cityVal, placeVal].filter(v => v && v !== 'Страна' && v !== 'Город').join(', ');
+                if (document.getElementById('previewLocation')) document.getElementById('previewLocation').innerText = fullLocation || 'Место не указано';
+                
+                if (document.getElementById('previewDate')) document.getElementById('previewDate').innerText = dateVal;
+                
+                const previewDescContainer = document.getElementById('previewDesc');
+                if (previewDescContainer) {
+                    previewDescContainer.innerHTML = `<p>${descVal.replace(/\n/g, '</p><p>')}</p>`;
+                }
+            } else {
+                if (btnNext) btnNext.style.display = 'flex';
+                if (btnPublish) btnPublish.style.display = 'none';
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        btnNext.addEventListener('click', () => {
+            if (currentStep < 3) {
+                currentStep++;
+                updateStepUI();
+            }
+        });
+
+        if (btnPrev) {
+            btnPrev.addEventListener('click', () => {
+                if (currentStep > 1) {
+                    currentStep--;
+                    updateStepUI();
+                }
+            });
+        }
+
+        choiceCards.forEach(card => {
+            card.addEventListener('click', () => {
+                choiceCards.forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+            });
+        });
+
+        if (btnPublish) {
+            btnPublish.addEventListener('click', () => {
+                const successModal = document.getElementById('successModal');
+                const btnModalHome = document.getElementById('btnModalHome');
+                
+                if (successModal) {
+                    successModal.style.display = 'flex';
+                    // Trigger reflow for animation
+                    successModal.offsetHeight;
+                    successModal.classList.add('active');
+                    
+                    if (btnModalHome) {
+                        btnModalHome.addEventListener('click', () => {
+                            window.location.href = 'index.html';
+                        });
+                    }
+
+                    // Optional fallback redirect after a few seconds
+                    // setTimeout(() => window.location.href = 'index.html', 5000);
+                }
+            });
+        }
+    }
+
+    // ── Burger / Mobile Navigation ──────────────────────────────────────
+    const header     = document.querySelector('.main-header');
+    const mobileNav  = document.querySelector('.mobile-nav');
+    const menuToggle = document.querySelector('.menu-toggle');
+
+    if (menuToggle && mobileNav && header) {
+        // Open / close
+        const openMenu = () => {
+            header.classList.add('nav-open');
+            mobileNav.classList.add('is-open');
+            document.body.style.overflow = 'hidden'; // lock scroll
+        };
+
+        const closeMenu = () => {
+            header.classList.remove('nav-open');
+            mobileNav.classList.remove('is-open');
+            document.body.style.overflow = '';
+        };
+
+        menuToggle.addEventListener('click', () => {
+            if (mobileNav.classList.contains('is-open')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+
+        // Close via Close button
+        const closeBtn = mobileNav.querySelector('.mobile-nav__close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeMenu);
+        }
+
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeMenu();
+        });
+
+        // Close when a plain link (not dropdown toggle) is clicked
+        mobileNav.querySelectorAll('a:not(.has-dropdown)').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // Accordion dropdowns inside mobile nav
+        mobileNav.querySelectorAll('.mobile-nav__link.has-dropdown').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const dropdown = toggle.nextElementSibling;
+                const isOpen = toggle.classList.contains('open');
+
+                // Close all others first
+                mobileNav.querySelectorAll('.mobile-nav__link.has-dropdown.open').forEach(el => {
+                    el.classList.remove('open');
+                    el.nextElementSibling?.classList.remove('is-open');
+                });
+
+                if (!isOpen) {
+                    toggle.classList.add('open');
+                    dropdown?.classList.add('is-open');
+                }
+            });
+        });
     }
 
     console.log('Gymnastics Hub Scripts Initialized!');

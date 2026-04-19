@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить мероприятие | Gymnastics Hub</title>
+    
+    <!-- Fonts: Raleway -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Smooth Scroll: Lenis -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+</head>
+<body class="light-theme loading">
+    <!-- Premium Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader__content">
+            <div class="preloader__star">
+                <svg width="74" height="75" viewBox="0 0 74 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M36.6602 0L44.437 29.2244L73.3203 37.093L44.437 44.9616L36.6602 74.186L28.8834 44.9616L0 37.093L28.8834 29.2244L36.6602 0Z" fill="white"/>
+                </svg>
+            </div>
+            <div class="preloader__text">GymnasticsHub</div>
+        </div>
+    </div>
+    
+    <header class="main-header main-header--light">
+        <div class="container container--wide">
+            <div class="header__logo">
+                <a href="index.html" class="logo">
+                    <img src="img/logo-black.svg" alt="logo">
+                    <span class="logo__text">GymnasticsHub</span>
+                </a>
+            </div>
+
+            <nav class="header__nav">
+                <ul class="nav-menu">
+                    <li class="nav-menu__item dropdown">
+                        <a href="events.html" class="nav-menu__link">Мероприятия <span class="arrow"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="events.html" class="dropdown-link">Турниры</a></li>
+                            <li><a href="#" class="dropdown-link">Сборы</a></li>
+                            <li><a href="#" class="dropdown-link">Семинары</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-menu__item dropdown">
+                        <a href="gallery.html" class="nav-menu__link">Медиа <span class="arrow"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="gallery.html" class="dropdown-link">Фотогалерея</a></li>
+                            <li><a href="#" class="dropdown-link">Видео</a></li>
+                            <li><a href="forum.html" class="dropdown-link">Форум</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-menu__item">
+                        <a href="#" class="nav-menu__link">Объявления</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="header__actions">
+                <a href="#" class="btn btn--outline-dark btn--add">
+                    <img src="img/plus-dark.svg" alt="plus">
+                    Добавить мероприятие
+                </a>
+                <a href="#" class="btn btn--black btn--login">
+                    <img src="img/user-white.svg" alt="user" class="btn-icon"> 
+                    Войти
+                </a>
+            </div>
+
+            <button class="menu-toggle" aria-label="Открыть меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="add-event-section">
+            <div class="container container--wide">
+                <h1 class="add-event-title">Добавление мероприятия</h1>
+                
+                <div class="stepper">
+                    <div class="step active" data-step="1">
+                        <span class="step__num">1</span>
+                        <span class="step__label">Тип мероприятия</span>
+                    </div>
+                    <div class="step" data-step="2">
+                        <span class="step__num">2</span>
+                        <span class="step__label">Основная информация</span>
+                    </div>
+                    <div class="step" data-step="3">
+                        <span class="step__num">3</span>
+                        <span class="step__label">Проверка и публикация</span>
+                    </div>
+                </div>
+
+                <p class="step-description" id="stepDescription">Описание того, что нужно сделать на данном этапе.</p>
+
+                <div class="add-event-content">
+                    <form id="addEventForm">
+                        <!-- Step 1: Choice -->
+                        <div class="step-content active" id="step1Content">
+                            <div class="choice-grid">
+                                <div class="choice-card choice-card--tournament active" data-type="Турниры / соревнования">
+                                    <div class="choice-card__text">Турниры / <br>соревнования</div>
+                                </div>
+                                <div class="choice-card choice-card--camp" data-type="Учебно-тренировочные сборы">
+                                    <div class="choice-card__text">Учебно-<br>тренировочные <br>сборы</div>
+                                </div>
+                                <div class="choice-card choice-card--seminar" data-type="Семинары / мастер-классы">
+                                    <div class="choice-card__text">Семинары / <br>мастер-классы</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Information -->
+                        <div class="step-content" id="step2Content">
+                            <div class="add-event-form">
+                                <!-- Photo Upload -->
+                                <label class="upload-box upload-row" for="photoInput">
+                                    <div class="upload-box__icon">
+                                        <img src="img/image-icon.svg" alt="upload">
+                                    </div>
+                                    <div class="upload-box__text">
+                                        <span class="upload-box__title">Загрузить фотографию</span>
+                                        <span class="upload-box__sub">Перетащите или нажмите на данную область, чтобы загрузить файлы</span>
+                                    </div>
+                                    <input type="file" hidden id="photoInput" accept="image/*">
+                                </label>
+
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <input type="text" class="form-input--pill" placeholder="Название" id="eventTitle">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <textarea class="form-textarea--pill" placeholder="Краткое описание" id="eventDesc"></textarea>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="select-wrapper">
+                                            <select class="form-input--pill" id="eventCountry">
+                                                <option value="" disabled selected>Страна</option>
+                                                <option value="kz">Казахстан</option>
+                                                <option value="ru">Россия</option>
+                                                <option value="it">Италия</option>
+                                            </select>
+                                            <span class="select-arrow"></span>
+                                        </div>
+                                        <div class="select-wrapper">
+                                            <select class="form-input--pill" id="eventCity">
+                                                <option value="" disabled selected>Город</option>
+                                                <option value="astana">Астана</option>
+                                                <option value="almaty">Алматы</option>
+                                                <option value="rome">Рим</option>
+                                            </select>
+                                            <span class="select-arrow"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" class="form-input--pill" placeholder="Место проведения (название места)" id="eventPlace">
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="date-wrapper">
+                                            <input type="text" class="form-input--pill" placeholder="Дата начала и окончания" id="eventDate">
+                                            <img src="img/calendar.svg" alt="calendar" class="input-icon">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-input--pill" placeholder="Контакты" id="eventContacts">
+                                        </div>
+                                    </div>
+
+                                    <!-- Document Upload -->
+                                    <label class="upload-box upload-row" for="docInput">
+                                        <div class="upload-box__icon">
+                                            <img src="img/download-big.svg" alt="upload">
+                                        </div>
+                                        <div class="upload-box__text">
+                                            <span class="upload-box__title">Загрузить файл / положение / регламент / программа</span>
+                                            <span class="upload-box__sub">Перетащите или нажмите на данную область, чтобы загрузить файл</span>
+                                        </div>
+                                        <input type="file" hidden id="docInput" multiple>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Review -->
+                        <div class="step-content" id="step3Content">
+                            <div class="event-preview">
+                                <!-- Breadcrumbs -->
+                                <nav class="breadcrumbs">
+                                    <a href="events.html">Все мероприятия</a>
+                                    <span class="separator">/</span>
+                                    <span class="current" id="previewTitleBreadcrumb">International Rhythmic Stars Cup 2026</span>
+                                </nav>
+
+                                <!-- Event Hero -->
+                                <section class="event-hero">
+                                    <div class="event-hero__grid">
+                                        <div class="event-gallery">
+                                            <div class="gallery-main">
+                                                <img src="img/gallery-ph.jpg" alt="Preview" id="previewImage">
+                                                <div class="gallery-dots">
+                                                    <span class="dot active"></span>
+                                                    <span class="dot"></span>
+                                                    <span class="dot"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="event-info">
+                                            <div class="event-tags">
+                                                <span class="tag tag--gray">
+                                                    <img src="img/cup.svg" alt="icon"> <span id="previewType">Турнир</span>
+                                                </span>
+                                                <span class="tag tag--gray" id="previewLevel">Международный</span>
+                                                <span class="tag tag--success-light">Идет регистрация</span>
+                                            </div>
+
+                                            <h1 class="event-title" id="previewTitle">International Rhythmic Stars Cup 2026</h1>
+
+                                            <div class="event-details-list">
+                                                <div class="detail-item">
+                                                    <img src="img/geo.svg" alt="icon" class="detail-icon">
+                                                    <div class="detail-content">
+                                                        <span class="detail-value" id="previewLocation">Италия, Рим, RDS Stadium</span>
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item detail-item--date">
+                                                    <img src="img/date.svg" alt="icon" class="detail-icon">
+                                                    <div class="detail-content">
+                                                        <span class="detail-value underline" id="previewDate">14–16 марта 2026</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="event-actions">
+                                                <button type="button" class="btn btn--black btn--download">
+                                                   <img width="24" src="img/download.svg" alt="download"> Скачать положение
+                                                </button>
+                                                <button type="button" class="btn btn--outline-dark btn--share">
+                                                    <img src="img/share.svg" alt="share"> Поделиться
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- Event Body -->
+                                <section class="event-body">
+                                    <div class="event-body__main">
+                                        <div class="about-block">
+                                            <h2 class="section-title">О мероприятии</h2>
+                                            <div class="about-text" id="previewDesc">
+                                                <p>Описание...</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="docs-block">
+                                            <h2 class="section-title">Документы</h2>
+                                            <div class="docs-grid">
+                                                <div class="doc-card">
+                                                    <div class="doc-card__icon">
+                                                        <svg viewBox="0 0 24 24" fill="none" stroke="#E53935" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                                                    </div>
+                                                    <div class="doc-card__info">
+                                                        <h4 class="doc-card__title">Положение о турнире</h4>
+                                                        <span class="doc-card__size">20.0 Мб</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <aside class="event-body__sidebar">
+                                        <div class="org-sidebar-widget">
+                                            <h3 class="widget-title">Организатор</h3>
+                                            <div class="org-card">
+                                                <div class="org-header">
+                                                    <div class="org-avatar">S</div>
+                                                    <div class="org-info">
+                                                        <h4 class="org-name" id="previewOrg">Roma Grace Club</h4>
+                                                        <span class="org-verified">Проверенный организатор</span>
+                                                    </div>
+                                                </div>
+                                                <div class="org-description">
+                                                    Информация об организаторе будет здесь...
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </aside>
+                                </section>
+                            </div>
+                        </div>
+
+                        <div class="add-event-footer">
+                            <button type="button" class="btn btn--outline-dark" id="btnPrev" style="display: none;">Назад</button>
+                            <button type="button" class="btn btn--black" id="btnNext">Следующий &rarr;</button>
+                            <button type="button" class="btn btn--black" id="btnPublish" style="display: none;">Опубликовать</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container container--wide">
+            <div class="footer__top">
+                <div class="footer__col footer__promo">
+                    <h2 class="footer__tagline">
+                        Будем рады <br>
+                        работать <br>
+                        <span class="italic">вместе</span>
+                    </h2>
+                    
+                    <div class="publish-block">
+                        <a href="add-event.html" class="publish-btn">
+                            <span class="circle-arrow">
+                                <img src="img/arrow-up-right.svg" alt="arrow">
+                            </span>
+                            <span class="btn-text">ОПУБЛИКОВАТЬ МЕРОПРИЯТИЕ</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer__col footer__contacts">
+                    <div class="contact-item">
+                        <span class="contact-label">Почта</span>
+                        <a href="mailto:лала@gmail.com" class="contact-value">лала@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">Контакты</span>
+                        <a href="tel:+77051234353" class="contact-value">+7 705 123 4353</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">Адрес</span>
+                        <span class="contact-value">г. Астана, ул. Пушкина, <br>дом Колатушкина</span>
+                    </div>
+                </div>
+
+                <div class="footer__col footer__socials">
+                    <a href="https://instagram.com" class="social-link instagram" target="_blank">
+                        <img src="img/instagram.svg" alt="Instagram" class="social-icon">
+                        <span>INSTAGRAM</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <a href="https://ziz.kz" class="copyright" target="_blank">
+                    Разработка и поддержка сайтов <span>ZIZ INC</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Result Modal -->
+    <div class="global-modal-overlay" id="successModal">
+        <div class="global-modal">
+            <div class="global-modal__icon">✓</div>
+            <h3>Мероприятие успешно отправлено!</h3>
+            <p>Наши модераторы проверят его в ближайшее время.</p>
+            <button class="btn btn--black" id="btnModalHome">Вернуться на главную</button>
+        </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <nav class="mobile-nav">
+        <button class="mobile-nav__close" aria-label="Закрыть меню">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <ul class="mobile-nav__menu">
+            <li class="mobile-nav__item">
+                <span class="mobile-nav__link has-dropdown">
+                    Мероприятия <span class="mobile-arrow">›</span>
+                </span>
+                <div class="mobile-dropdown">
+                    <a href="events.html">Турниры</a>
+                    <a href="#">Сборы</a>
+                    <a href="#">Семинары</a>
+                </div>
+            </li>
+            <li class="mobile-nav__item">
+                <a href="gallery.html" class="mobile-nav__link">Медиа</a>
+            </li>
+            <li class="mobile-nav__item">
+                <a href="forum.html" class="mobile-nav__link">Форум</a>
+            </li>
+            <li class="mobile-nav__item">
+                <a href="#" class="mobile-nav__link">Объявления</a>
+            </li>
+        </ul>
+    </nav>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

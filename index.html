@@ -26,7 +26,7 @@
                     <path d="M36.6602 0L44.437 29.2244L73.3203 37.093L44.437 44.9616L36.6602 74.186L28.8834 44.9616L0 37.093L28.8834 29.2244L36.6602 0Z" fill="white"/>
                 </svg>
             </div>
-            <div class="preloader__text">Gymnastics Hub</div>
+            <div class="preloader__text">GymnasticsHub</div>
         </div>
     </div>
     
@@ -64,7 +64,7 @@
             </nav>
 
             <div class="header__actions">
-                <a href="#" class="btn btn--outline-white btn--add">
+                <a href="add-event.html" class="btn btn--outline-white btn--add">
                     <img src="img/plus.svg" alt="plus">
                     Добавить мероприятие
                 </a>
@@ -173,7 +173,7 @@
 
         <section class="promo-slider">
             <div class="promo-slider__track">
-                <a href="#" class="promo-slide">
+                <a href="https://google.com" class="promo-slide">
                     <img src="img/test-banner.webp" alt="Gymnastics Event">
                 </a>
                 <a href="#" class="promo-slide active">
@@ -392,6 +392,42 @@
             <img src="img/ai-btn.png" alt="AI">
         </a>
     </div>
+
+    <!-- Mobile Navigation Overlay -->
+    <nav class="mobile-nav">
+        <button class="mobile-nav__close" aria-label="Закрыть меню">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <ul class="mobile-nav__menu">
+            <li class="mobile-nav__item">
+                <span class="mobile-nav__link has-dropdown">
+                    Мероприятия <span class="mobile-arrow">›</span>
+                </span>
+                <div class="mobile-dropdown">
+                    <a href="events.html">Турниры</a>
+                    <a href="#">Сборы</a>
+                    <a href="#">Семинары</a>
+                </div>
+            </li>
+            <li class="mobile-nav__item">
+                <span class="mobile-nav__link has-dropdown">
+                    Медиа <span class="mobile-arrow">›</span>
+                </span>
+                <div class="mobile-dropdown">
+                    <a href="gallery.html">Фотогалерея</a>
+                    <a href="#">Видео</a>
+                    <a href="forum.html">Форум</a>
+                </div>
+            </li>
+            <li class="mobile-nav__item">
+                <a href="#" class="mobile-nav__link">Объявления</a>
+            </li>
+        </ul>
+        <div class="mobile-nav__actions">
+            <a href="add-event.html" class="btn btn--outline-dark">+ Добавить мероприятие</a>
+            <a href="login.html" class="btn btn--black">Войти</a>
+        </div>
+    </nav>
 
     <script src="js/main.js"></script>
 </body>
