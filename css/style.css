@@ -4393,34 +4393,17 @@ body.dark-theme {
 .profile-page .profile-header {
   position: relative;
   margin-bottom: 40px;
-}
-.profile-page .profile-header__cover {
-  height: 300px;
-  background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
-  overflow: hidden;
-}
-.profile-page .profile-header__cover img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.6;
+  padding-top: 60px;
 }
 .profile-page .profile-header__content {
-  margin-top: -80px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: 30px;
-  padding: 0 40px;
 }
 @media (max-width: 768px) {
   .profile-page .profile-header__content {
     flex-direction: column;
-    align-items: center;
     text-align: center;
-    margin-top: -60px;
-    padding: 0 20px;
   }
 }
 .profile-page .profile-header__avatar {

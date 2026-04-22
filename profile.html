@@ -69,61 +69,86 @@
     </header>
 
     <main class="main-content profile-page">
-        <!-- Profile Header Section -->
-        <section class="profile-header">
-            <div class="profile-header__cover">
-                <img src="img/card.png" alt="Cover">
-            </div>
+        <!-- Simplified Profile Header -->
+        <section class="profile-header" style="padding-top: 60px;">
             <div class="container container--wide">
-                <div class="profile-header__content">
+                <div class="profile-header__content" style="margin-top: 0;">
                     <div class="profile-header__avatar">
                         <img src="img/user_icon.svg" alt="Avatar">
                     </div>
                     <div class="profile-header__info">
                         <h1 class="name">Александр Гимнастов</h1>
-                        <span class="role-badge">Администратор</span>
+                        <span class="role-badge">Пользователь</span>
                     </div>
                     <div class="profile-header__actions">
-                        <button class="btn btn--outline-dark btn--pill">Редактировать</button>
+                        <button class="btn btn--outline-dark btn--pill" id="openEditProfile">Редактировать</button>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Edit Profile Modal -->
+        <div class="global-modal-overlay" id="editProfileModal">
+            <div class="global-modal global-modal--form" style="max-width: 500px;">
+                <button class="modal-close" id="closeEditProfile" aria-label="Закрыть">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+
+                <h2 class="modal-title" style="margin-bottom: 24px;">Редактировать профиль</h2>
+
+                <form class="edit-profile-form">
+                    <!-- Avatar Upload -->
+                    <div class="avatar-upload-group" style="text-align: center; margin-bottom: 30px;">
+                        <div class="avatar-preview" style="width: 100px; height: 100px; border-radius: 50%; background: #F2F2F2; margin: 0 auto 15px; overflow: hidden; position: relative; border: 2px solid #E0E0E0;">
+                            <img src="img/user_icon.svg" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <label class="btn btn--outline-dark btn--sm" style="cursor: pointer;">
+                            <span>Сменить фото</span>
+                            <input type="file" hidden accept="image/*">
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: block; font-size: 13px; color: #999; margin-bottom: 8px; font-weight: 500;">Имя</label>
+                        <input type="text" class="form-input--pill" value="Александр" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: block; font-size: 13px; color: #999; margin-bottom: 8px; font-weight: 500;">Фамилия</label>
+                        <input type="text" class="form-input--pill" value="Гимнастов" required>
+                    </div>
+
+                    <div class="form-footer" style="margin-top: 30px; display: flex; flex-direction: column; gap: 15px;">
+                        <button type="submit" class="btn btn--black btn--pill w-100">Сохранить изменения</button>
+                        
+                        <div class="danger-zone" style="border-top: 1px solid #F0F0F0; padding-top: 20px; margin-top: 10px;">
+                            <button type="button" class="btn btn--outline-dark btn--pill w-100" style="color: #FF4B4B; border-color: #FF4B4B;">Удалить аккаунт</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <div class="container container--wide">
-            <!-- Stats Summary -->
-            <div class="stats-row">
+            <!-- Basic Stats -->
+            <div class="stats-row" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="stat-box">
+                    <span class="stat-box__value">12.01.2024</span>
+                    <span class="stat-box__label">Дата регистрации</span>
+                </div>
                 <div class="stat-box">
                     <span class="stat-box__value">1,240</span>
-                    <span class="stat-box__label">Сообщений</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-box__value">15</span>
-                    <span class="stat-box__label">Мероприятий</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-box__value">4.9</span>
-                    <span class="stat-box__label">Рейтинг</span>
+                    <span class="stat-box__label">Сообщений на форуме</span>
                 </div>
             </div>
 
-            <div class="profile-grid">
-                <!-- Main Column -->
+            <div class="profile-grid" style="grid-template-columns: 1fr;">
+                <!-- Main Activity Column -->
                 <div class="profile-main">
                     <div class="profile-card">
                         <h2 class="profile-card__title">
-                            <img src="img/user-white.svg" alt="" style="filter: invert(1);">
-                            О себе
-                        </h2>
-                        <div class="desc-content" style="color: #666; line-height: 1.6;">
-                            <p>Мастер спорта по художественной гимнастике. Занимаюсь организацией турниров и сборов более 10 лет. На данном портале курирую вопросы модерации и развития сообщества.</p>
-                        </div>
-                    </div>
-
-                    <div class="profile-card">
-                        <h2 class="profile-card__title">
                             <img src="img/date.svg" alt="">
-                            Последняя активность
+                            Последняя активность на форуме
                         </h2>
                         <div class="activity-feed">
                             <div class="activity-item">
@@ -131,57 +156,18 @@
                                     <img src="img/mail-gray.svg" alt="">
                                 </div>
                                 <div class="activity-item__text">
-                                    Ответил в теме <strong>«Подготовка к турниру в Милане»</strong> на форуме.
+                                    Ответил в теме <strong>«Подготовка к турниру в Милане»</strong>.
                                     <span class="activity-item__time">2 часа назад</span>
                                 </div>
                             </div>
                             <div class="activity-item">
                                 <div class="activity-item__icon">
-                                    <img src="img/plus.svg" alt="" style="filter: invert(0.5);">
+                                    <img src="img/mail-gray.svg" alt="">
                                 </div>
                                 <div class="activity-item__text">
-                                    Опубликовал новое мероприятие <strong>«Летние сборы 2026»</strong>.
+                                    Создал новую тему <strong>«Обсуждение правил 2026»</strong>.
                                     <span class="activity-item__time">Вчера, 14:20</span>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sidebar Column -->
-                <div class="profile-sidebar">
-                    <div class="profile-card">
-                        <h2 class="profile-card__title">Информация</h2>
-                        <div class="info-list">
-                            <div class="info-item">
-                                <span class="info-item__label">На сайте с:</span>
-                                <span class="info-item__value">12.01.2024</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item__label">Город:</span>
-                                <span class="info-item__value">Астана, Казахстан</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item__label">Специализация:</span>
-                                <span class="info-item__value">Тренер, Судья</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item__label">Пол:</span>
-                                <span class="info-item__value">Мужской</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="profile-card">
-                        <h2 class="profile-card__title">Контакты</h2>
-                        <div class="info-list">
-                            <div class="info-item">
-                                <span class="info-item__label">Email:</span>
-                                <span class="info-item__value">alex@gymhub.kz</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item__label">Телефон:</span>
-                                <span class="info-item__value">+7 701 123 45 67</span>
                             </div>
                         </div>
                     </div>
@@ -281,5 +267,34 @@
     </nav>
 
     <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const editModal = document.getElementById('editProfileModal');
+            const openBtn = document.getElementById('openEditProfile');
+            const closeBtn = document.getElementById('closeEditProfile');
+
+            if (openBtn && editModal) {
+                openBtn.addEventListener('click', () => {
+                    editModal.classList.add('is-open');
+                    if (window.lenis) window.lenis.stop();
+                });
+            }
+
+            if (closeBtn && editModal) {
+                closeBtn.addEventListener('click', () => {
+                    editModal.classList.remove('is-open');
+                    if (window.lenis) window.lenis.start();
+                });
+            }
+
+            // Close on overlay click
+            editModal.addEventListener('click', (e) => {
+                if (e.target === editModal) {
+                    editModal.classList.remove('is-open');
+                    if (window.lenis) window.lenis.start();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
