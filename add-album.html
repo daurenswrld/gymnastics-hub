@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Публикация альбома - Gymnastics Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+</head>
+<body class="main-header--light-bg">
+    <!-- Header -->
+    <header class="main-header main-header--light">
+        <div class="container container--wide">
+            <a href="index.html" class="logo">
+                <img src="img/logo-black.svg" alt="GymnasticsHub">
+                <span class="logo__text">GymnasticsHub</span>
+            </a>
+            
+            <nav class="header__nav">
+                <ul class="nav-menu">
+                    <li class="nav-menu__item dropdown">
+                        <a href="#" class="nav-menu__link">Мероприятия <span class="arrow"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="events.html" class="dropdown-link">Все</a></li>
+                            <li><a href="#" class="dropdown-link">Турниры</a></li>
+                            <li><a href="#" class="dropdown-link">Сборы</a></li>
+                            <li><a href="#" class="dropdown-link">Семинары & мастер-классы</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-menu__item dropdown">
+                        <a href="#" class="nav-menu__link">Медиа <span class="arrow"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="gallery.html" class="dropdown-link">Галерея</a></li>
+                            <li><a href="forum.html" class="dropdown-link">Форум</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-menu__item"><a href="#" class="nav-menu__link">Объявления</a></li>
+                    <li class="nav-menu__item"><a href="#" class="nav-menu__link">Магазин</a></li>
+                </ul>
+            </nav>
+
+            <div class="header__actions">
+                <a href="add-event.html" class="btn btn--outline-dark">
+                    <span class="plus-icon">+</span> Добавить мероприятие
+                </a>
+                <a href="login.html" class="btn btn--black">
+                    <span class="user-placeholder"><img src="img/user-white.svg" alt="user"></span> Войти
+                </a>
+            </div>
+
+            <button class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-nav">
+        <button class="mobile-nav__close">&times;</button>
+        <ul class="mobile-nav__menu">
+            <li class="mobile-nav__item">
+                <span class="mobile-nav__link has-dropdown">Мероприятия <span class="mobile-arrow">›</span></span>
+                <div class="mobile-dropdown">
+                    <a href="events.html">Все</a>
+                    <a href="#">Турниры</a>
+                    <a href="#">Сборы</a>
+                    <a href="#">Семинары & мастер-классы</a>
+                </div>
+            </li>
+            <li class="mobile-nav__item">
+                <span class="mobile-nav__link has-dropdown">Медиа <span class="mobile-arrow">›</span></span>
+                <div class="mobile-dropdown">
+                    <a href="gallery.html">Галерея</a>
+                    <a href="forum.html">Форум</a>
+                </div>
+            </li>
+            <li class="mobile-nav__item"><a href="#" class="mobile-nav__link">Объявления</a></li>
+            <li class="mobile-nav__item"><a href="#" class="mobile-nav__link">Магазин</a></li>
+        </ul>
+        <div class="mobile-nav__actions">
+            <a href="add-event.html" class="btn btn--outline-dark">Добавить мероприятие</a>
+            <a href="login.html" class="btn btn--black">Войти</a>
+        </div>
+    </div>
+
+    <main class="main-content add-album-page">
+        <div class="container">
+            <!-- Step 1: Form -->
+            <div id="albumStep1" class="step-content active">
+                <div class="add-album-header">
+                    <h1 class="page-title">Публикация альбома</h1>
+                    <p class="page-subtitle">Описание того, что нужно сделать на данном этапе.</p>
+                </div>
+
+                <form class="add-album-form" id="addAlbumForm">
+                    <!-- Upload Box -->
+                    <div class="upload-box" id="uploadArea">
+                        <div class="upload-box__icon">
+                            <img src="img/upload.svg" alt="">
+                        </div>
+                        <div class="upload-box__text">
+                            <h4>Загрузить фотографий</h4>
+                            <p>Перетащите или нажмите на данную область, чтобы загрузить файлы (не более 6)</p>
+                        </div>
+                        <input type="file" id="albumFiles" multiple hidden accept="image/*">
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <input type="text" class="form-input--pill" placeholder="Ссылка на диск с фотографиями">
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <input type="text" class="form-input--pill" id="albumTitle" placeholder="Название">
+                        </div>
+
+                        <div class="form-row split-2">
+                            <div class="form-group custom-select-pill">
+                                <select id="albumCountry">
+                                    <option value="" disabled selected>Страна</option>
+                                    <option value="italy">Италия</option>
+                                    <option value="greece">Греция</option>
+                                    <option value="kazakhstan">Казахстан</option>
+                                </select>
+                                <span class="select-arrow"></span>
+                            </div>
+                            <div class="form-group custom-select-pill">
+                                <select id="albumCity">
+                                    <option value="" disabled selected>Город</option>
+                                    <option value="milan">Милан</option>
+                                    <option value="athens">Афины</option>
+                                    <option value="astana">Астана</option>
+                                </select>
+                                <span class="select-arrow"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <input type="text" class="form-input--pill" placeholder="Место проведения (название место)">
+                        </div>
+
+                        <div class="form-row split-2">
+                            <div class="form-group icon-input">
+                                <input type="date" class="form-input--pill" placeholder="Дата начала и окончания">
+                                <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                            </div>
+                            <div class="form-group custom-select-pill">
+                                <select>
+                                    <option value="" disabled selected>Категория</option>
+                                    <option value="tournaments">Турниры</option>
+                                    <option value="camps">Сборы</option>
+                                    <option value="seminars">Семинары</option>
+                                </select>
+                                <span class="select-arrow"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-row split-2">
+                            <div class="form-group icon-input">
+                                <input type="tel" class="form-input--pill" placeholder="Номер телефона">
+                                <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            </div>
+                            <div class="form-group icon-input">
+                                <input type="email" class="form-input--pill" placeholder="Почта">
+                                <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            </div>
+                        </div>
+
+                        <div class="form-row split-3">
+                            <div class="form-group">
+                                <input type="text" class="form-input--pill" placeholder="WhatsApp">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-input--pill" placeholder="Instagram">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-input--pill" placeholder="Telegram">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-footer">
+                        <button type="button" class="btn btn--black btn--next" id="btnToStep2">
+                            Следующий <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Step 2: Confirm -->
+            <div id="albumStep2" class="step-content">
+                <div class="add-album-header">
+                    <h1 class="page-title">Подтвердите данные</h1>
+                    <p class="page-subtitle">Проверьте правильность заполнения информации перед публикацией.</p>
+                </div>
+
+                <div class="confirm-card">
+                    <div class="confirm-item">
+                        <span class="confirm-label">Название альбома:</span>
+                        <span class="confirm-value" id="previewTitle">—</span>
+                    </div>
+                    <div class="confirm-item">
+                        <span class="confirm-label">Локация:</span>
+                        <span class="confirm-value" id="previewLocation">—</span>
+                    </div>
+                    <!-- More fields can be added here -->
+                </div>
+
+                <div class="form-footer">
+                    <button type="button" class="btn btn--outline-dark" id="btnBackToStep1">Назад</button>
+                    <button type="button" class="btn btn--black" id="btnConfirmAlbum">Подтвердить и опубликовать</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div class="global-modal-overlay" id="albumSuccessModal">
+        <div class="global-modal">
+            <div class="global-modal__icon">✓</div>
+            <h3>Альбом отправлен</h3>
+            <p>Ваш альбом успешно отправлен на модерацию. <br>После проверки он появится в галерее.</p>
+            <div class="btn">
+                <a href="gallery.html" class="btn btn--black">Вернуться в галерею</a>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .upload-box {
+            margin-bottom: 32px;
+        }
+    </style>
+
+    <footer class="main-footer">
+        <div class="container container--wide">
+            <div class="footer__top">
+                <div class="footer__col footer__promo">
+                    <h2 class="footer__tagline">
+                        Будем рады <br>
+                        работать <br>
+                        <span class="italic">вместе</span>
+                    </h2>
+                    
+                    <div class="publish-block">
+                        <a href="add-event.html" class="publish-btn">
+                            <span class="circle-arrow">
+                                <img src="img/arrow-up-right.svg" alt="arrow">
+                            </span>
+                            <span class="btn-text">ОПУБЛИКОВАТЬ МЕРОПРИЯТИЕ</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer__col footer__contacts">
+                    <div class="contact-item">
+                        <span class="contact-label">Почта</span>
+                        <a href="mailto:лала@gmail.com" class="contact-value">лала@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">Контакты</span>
+                        <a href="tel:+77051234353" class="contact-value">+7 705 123 4353</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">Адрес</span>
+                        <span class="contact-value">г. Астана, ул. Пушкина, <br>дом Колатушкина</span>
+                    </div>
+                </div>
+
+                <div class="footer__col footer__socials">
+                    <a href="https://instagram.com" class="social-link instagram" target="_blank">
+                        <img src="img/instagram.svg" alt="Instagram" class="social-icon">
+                        <span>INSTAGRAM</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <a href="https://ziz.kz" class="copyright" target="_blank">
+                    Разработка и поддержка сайтов <span>ZIZ INC</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

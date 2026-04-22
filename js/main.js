@@ -2,25 +2,28 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // -- Lenis Smooth Scroll Initialization --
-    const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smoothWheel: true,
-        wheelMultiplier: 1,
-        touchMultiplier: 2,
-        infinite: false,
-    });
+    let lenis;
+    if (typeof Lenis !== 'undefined') {
+        lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+            wheelMultiplier: 1,
+            touchMultiplier: 2,
+            infinite: false,
+        });
 
-    function raf(time) {
-        lenis.raf(time);
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
         requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
 
     // Preloader Logic
     const preloader = document.getElementById('preloader');
     if (preloader) {
-        lenis.stop(); // Stop scrolling while preloader is active
+        if (lenis) lenis.stop(); // Stop scrolling while preloader is active
 
         const minDisplayTime = 2500;
         const startTime = Date.now();
@@ -33,11 +36,11 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 preloader.classList.add('preloader--hidden');
                 document.body.classList.remove('loading');
-                lenis.start(); // Enable scrolling after preloader is hidden
+                if (lenis) lenis.start(); // Enable scrolling after preloader is hidden
                 
                 // Ensure we start at the top
                 window.scrollTo(0, 0);
-                lenis.scrollTo(0, { immediate: true });
+                if (lenis) lenis.scrollTo(0, { immediate: true });
                 
                 // Remove from DOM after transition
                 setTimeout(() => {
@@ -54,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         // No preloader on this page — ensure scroll works immediately
         document.body.classList.remove('loading');
-        lenis.start();
+        if (lenis) lenis.start();
     }
     // Tab switching for Search Card
     const tabButtons = document.querySelectorAll('.tab-btn');
@@ -163,32 +166,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const dateValue = document.getElementById('dateValue');
     const dateContainer = document.getElementById('datePickerContainer');
 
-    if (dateInput && dateValue && dateContainer) {
+    if (dateInput && dateContainer) {
         // Open date picker when the whole box is clicked
-        dateContainer.addEventListener('click', (e) => {
-            // Check if showPicker is supported (modern browsers)
-            if ('showPicker' in HTMLInputElement.prototype) {
-                dateInput.showPicker();
-            } else {
-                dateInput.click(); // Fallback for older browsers
+        dateContainer.addEventListener('click', () => {
+            try {
+                if ('showPicker' in HTMLInputElement.prototype) {
+                    dateInput.showPicker();
+                } else {
+                    dateInput.click();
+                }
+            } catch (err) {
+                dateInput.click();
             }
         });
 
         // Update display text when date is chosen
         dateInput.addEventListener('change', (e) => {
             const selectedDate = e.target.value;
-            if (selectedDate) {
+            if (selectedDate && dateValue) {
                 const dateParts = selectedDate.split('-');
                 const formattedDate = `${dateParts[2]}.${dateParts[1]}.${dateParts[0]}`;
                 dateValue.innerText = formattedDate;
                 dateValue.style.color = '#1a1a1a';
                 dateValue.style.opacity = '1';
             }
-        });
-        
-        // Prevent event bubbling if clicking exactly on input
-        dateInput.addEventListener('click', (e) => {
-            e.stopPropagation();
         });
     }
 
@@ -403,6 +404,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 showAuthState('success');
             });
         }
+
+        // Handle registration form submission (demo redirect)
+        const registerForm = document.getElementById('registerForm');
+        if (registerForm) {
+            registerForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                window.location.href = 'verify-email.html';
+            });
+        }
+
+        // Handle verification form submission (demo redirect)
+        const verifyForm = document.getElementById('verifyForm');
+        if (verifyForm) {
+            verifyForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Simulating verification success
+                window.location.href = 'login.html';
+            });
+        }
     }
 
     // --- Add Event SPA Logic ---
@@ -580,6 +600,152 @@ document.addEventListener('DOMContentLoaded', () => {
                     dropdown?.classList.add('is-open');
                 }
             });
+        });
+    }
+
+    // ── Add Album Workflow ──────────────────────────────────────────────
+    const albumForm = document.getElementById('addAlbumForm');
+    if (albumForm) {
+        const btnToStep2 = document.getElementById('btnToStep2');
+        const btnBackToStep1 = document.getElementById('btnBackToStep1');
+        const btnConfirmAlbum = document.getElementById('btnConfirmAlbum');
+        
+        const step1 = document.getElementById('albumStep1');
+        const step2 = document.getElementById('albumStep2');
+        
+        const previewTitle = document.getElementById('previewTitle');
+        const previewLocation = document.getElementById('previewLocation');
+
+        const successModal = document.getElementById('albumSuccessModal');
+
+        if (btnToStep2) {
+            btnToStep2.addEventListener('click', () => {
+                // Update preview data
+                const titleVal = document.getElementById('albumTitle')?.value || '—';
+                const countrySelect = document.getElementById('albumCountry');
+                const citySelect = document.getElementById('albumCity');
+                
+                const countryVal = countrySelect?.options[countrySelect.selectedIndex]?.text || '';
+                const cityVal = citySelect?.options[citySelect.selectedIndex]?.text || '';
+                
+                if (previewTitle) previewTitle.textContent = titleVal;
+                
+                let locationText = '';
+                if (countryVal && !countrySelect.options[0].selected) locationText += countryVal;
+                if (cityVal && !citySelect.options[0].selected) {
+                    locationText += (locationText ? ', ' : '') + cityVal;
+                }
+                if (previewLocation) previewLocation.textContent = locationText || '—';
+
+                // Switch steps
+                step1.classList.remove('active');
+                step2.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        if (btnBackToStep1) {
+            btnBackToStep1.addEventListener('click', () => {
+                step2.classList.remove('active');
+                step1.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        if (btnConfirmAlbum) {
+            btnConfirmAlbum.addEventListener('click', () => {
+                if (successModal) {
+                    successModal.style.display = 'flex';
+                    // Trigger reflow for animation
+                    successModal.offsetHeight;
+                    successModal.classList.add('active');
+                }
+            });
+        }
+
+        // Upload Area
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('albumFiles');
+        if (uploadArea && fileInput) {
+            uploadArea.addEventListener('click', () => fileInput.click());
+            
+            // Simple visual feedback for drag and drop
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.style.borderColor = '#1a1a1a';
+                uploadArea.style.background = '#f0f0f0';
+            });
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.style.borderColor = '#E0E0E0';
+                uploadArea.style.background = '#F8F8F8';
+            });
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.style.borderColor = '#E0E0E0';
+                uploadArea.style.background = '#F8F8F8';
+            });
+        }
+    }
+
+    // -- Ad Placement Modal Logic --
+    const openAdModalBtn = document.getElementById('openAdModal');
+    const closeAdModalBtn = document.getElementById('closeAdModal');
+    const adModal = document.getElementById('adModal');
+    const adForm = document.getElementById('adForm');
+
+    if (openAdModalBtn && adModal) {
+        openAdModalBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            adModal.classList.add('is-open');
+            if (typeof lenis !== 'undefined') lenis.stop();
+        });
+
+        // Close modal via Close Button
+        if (closeAdModalBtn) {
+            closeAdModalBtn.addEventListener('click', () => {
+                adModal.classList.remove('is-open');
+                if (typeof lenis !== 'undefined') lenis.start();
+            });
+        }
+
+        // Close modal when clicking on overlay
+        adModal.addEventListener('click', (e) => {
+            if (e.target === adModal) {
+                adModal.classList.remove('is-open');
+                if (typeof lenis !== 'undefined') lenis.start();
+            }
+        });
+    }
+
+    if (adForm) {
+        adForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Hide entry modal
+            adModal.classList.remove('is-open');
+            
+            // Show success modal after a tiny delay
+            setTimeout(() => {
+                const successModal = document.getElementById('adSuccessModal');
+                if (successModal) successModal.classList.add('is-open');
+            }, 300);
+        });
+    }
+
+    // Success Modal Close Logic
+    const closeAdSuccessModalBtn = document.getElementById('closeAdSuccessModal');
+    const adSuccessModal = document.getElementById('adSuccessModal');
+
+    if (closeAdSuccessModalBtn && adSuccessModal) {
+        closeAdSuccessModalBtn.addEventListener('click', () => {
+            adSuccessModal.classList.remove('is-open');
+            if (typeof lenis !== 'undefined') lenis.start();
+        });
+
+        adSuccessModal.addEventListener('click', (e) => {
+            if (e.target === adSuccessModal) {
+                adSuccessModal.classList.remove('is-open');
+                if (typeof lenis !== 'undefined') lenis.start();
+            }
         });
     }
 

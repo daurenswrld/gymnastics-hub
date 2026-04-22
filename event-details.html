@@ -41,19 +41,19 @@
             <nav class="header__nav">
                 <ul class="nav-menu">
                     <li class="nav-menu__item dropdown">
-                        <a href="events.html" class="nav-menu__link">Мероприятия <span class="arrow"></span></a>
+                        <a href="#" class="nav-menu__link active">Мероприятия <span class="arrow"></span></a>
                         <ul class="dropdown-menu">
+                            <li><a href="events.html" class="dropdown-link">Все</a></li>
                             <li><a href="#" class="dropdown-link">Турниры</a></li>
                             <li><a href="#" class="dropdown-link">Сборы</a></li>
-                            <li><a href="#" class="dropdown-link">Семинары</a></li>
+                            <li><a href="#" class="dropdown-link">Семинары & мастер-классы</a></li>
                         </ul>
                     </li>
                     <li class="nav-menu__item dropdown">
                         <a href="#" class="nav-menu__link">Медиа <span class="arrow"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" class="dropdown-link">Фотогалерея</a></li>
-                            <li><a href="#" class="dropdown-link">Видео</a></li>
-                            <li><a href="#" class="dropdown-link">Новости</a></li>
+                            <li><a href="gallery.html" class="dropdown-link">Галерея</a></li>
+                            <li><a href="forum.html" class="dropdown-link">Форум</a></li>
                         </ul>
                     </li>
                     <li class="nav-menu__item">
@@ -226,18 +226,43 @@
                         <h3 class="widget-title">Организатор</h3>
                         <div class="org-card">
                             <div class="org-header">
-                                <div class="org-avatar">S</div>
+                                <div class="org-avatar">
+                                    <img src="img/user-placeholder.png" alt="Roma Grace Club">
+                                </div>
                                 <div class="org-info">
                                     <h4 class="org-name">Roma Grace Club</h4>
-                                    <span class="org-verified">Проверенный организатор</span>
+                                    <span class="org-verified">
+                                        <span class="dot"></span> Проверенный организатор
+                                    </span>
                                 </div>
                             </div>
-                            <div class="org-description">
-                                Клуб бесплатный детский спортивной школы гимнастики Павла и Круговой с постоянным попечительским поликлиникой
+
+                            <div class="org-contacts">
+                                <div class="org-contact-item">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                                    <a href="tel:+77006814738">+7 (700) 681 4738</a>
+                                </div>
+                                <div class="org-contact-item">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                    <a href="mailto:Sales@gamechanger.kz">Sales@gamechanger.kz</a>
+                                </div>
                             </div>
-                            <a href="#" class="btn-club">
-                                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg> Перейти в клуб
-                            </a>
+
+                            <div class="org-socials">
+                                <a href="#" class="social-icon">
+                                    <img src="img/instagram.svg" alt="Instagram" style="filter: invert(1);">
+                                </a>
+                                <a href="#" class="social-icon">
+                                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M27.3171 4.66667C24.3066 1.66667 20.2927 0 16.0557 0C7.24738 0 0.111497 7.11111 0.111497 15.8889C0.111497 18.6667 0.891986 21.4444 2.22997 23.7778L0 32L8.47387 29.7778C10.8153 31 13.3798 31.6667 16.0557 31.6667C24.8641 31.6667 32 24.5556 32 15.7778C31.8885 11.6667 30.3275 7.66667 27.3171 4.66667ZM23.7491 21.5556C23.4146 22.4444 21.8537 23.3333 21.0732 23.4444C20.4042 23.5556 19.5122 23.5556 18.6202 23.3333C18.0627 23.1111 17.2822 22.8889 16.3902 22.4444C12.3763 20.7778 9.81185 16.7778 9.58885 16.4444C9.36586 16.2222 7.91638 14.3333 7.91638 12.3333C7.91638 10.3333 8.91986 9.44444 9.25435 9C9.58885 8.55555 10.0348 8.55555 10.3693 8.55555C10.5923 8.55555 10.9268 8.55555 11.1498 8.55555C11.3728 8.55555 11.7073 8.44444 12.0418 9.22222C12.3763 10 13.1568 12 13.2683 12.1111C13.3798 12.3333 13.3798 12.5556 13.2683 12.7778C13.1568 13 13.0453 13.2222 12.8223 13.4444C12.5993 13.6667 12.3763 14 12.2648 14.1111C12.0418 14.3333 11.8188 14.5556 12.0418 14.8889C12.2648 15.3333 13.0453 16.5556 14.2718 17.6667C15.8328 19 17.0592 19.4444 17.5052 19.6667C17.9512 19.8889 18.1742 19.7778 18.3972 19.5556C18.6202 19.3333 19.4007 18.4444 19.6237 18C19.8467 17.5556 20.1812 17.6667 20.5157 17.7778C20.8502 17.8889 22.8571 18.8889 23.1916 19.1111C23.6376 19.3333 23.8606 19.4444 23.9721 19.5556C24.0836 19.8889 24.0836 20.6667 23.7491 21.5556Z" fill="black"/>
+                                    </svg>
+                                </a>
+                                <a href="#" class="social-icon">
+                                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M32 1.1336L26.9382 30.6678C26.9382 30.6678 26.23 32.7155 24.2845 31.7334L12.6056 21.3696L12.5514 21.339C14.129 19.6996 26.3619 6.96972 26.8966 6.3927C27.7242 5.49904 27.2104 4.96702 26.2494 5.64209L8.17986 18.9232L1.20865 16.2085C1.20865 16.2085 0.111591 15.7569 0.0060511 14.7748C-0.100878 13.7911 1.24476 13.2591 1.24476 13.2591L29.6642 0.355666C29.6642 0.355666 32 -0.832132 32 1.1336Z" fill="black"/>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </aside>
@@ -450,9 +475,10 @@
                     Мероприятия <span class="mobile-arrow">›</span>
                 </span>
                 <div class="mobile-dropdown">
-                    <a href="events.html">Турниры</a>
+                    <a href="events.html">Все</a>
+                    <a href="#">Турниры</a>
                     <a href="#">Сборы</a>
-                    <a href="#">Семинары</a>
+                    <a href="#">Семинары & мастер-классы</a>
                 </div>
             </li>
             <li class="mobile-nav__item">
@@ -460,8 +486,7 @@
                     Медиа <span class="mobile-arrow">›</span>
                 </span>
                 <div class="mobile-dropdown">
-                    <a href="gallery.html">Фотогалерея</a>
-                    <a href="#">Видео</a>
+                    <a href="gallery.html">Галерея</a>
                     <a href="forum.html">Форум</a>
                 </div>
             </li>
