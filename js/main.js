@@ -1,5 +1,10 @@
 // Gymnastics Hub - Main Script (Hero Block Update)
 
+// Import Alina AI Assistant
+const alinaScript = document.createElement('script');
+alinaScript.src = 'js/alina.js';
+document.head.appendChild(alinaScript);
+
 document.addEventListener('DOMContentLoaded', () => {
     // -- Lenis Smooth Scroll Initialization --
     let lenis;
